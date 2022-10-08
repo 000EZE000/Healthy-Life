@@ -1,0 +1,13 @@
+Nombre de la Base de Dato seria 
+
+APP_FOOD
+
+recipes and food app
+
+RECIPES_AND_FOOD_APP
+
+request
+
+https://api.spoonacular.com/recipes/716429/information?apiKey=24a6056c26644d56bcdf9518140b8922&includeNutrition=true
+
+   https://api.spoonacular.com/recipes/search?apiKey=24a6056c26644d56bcdf9518140b8922&cuisine=italian
