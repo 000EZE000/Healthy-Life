@@ -2,21 +2,13 @@ const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 
-const Diet = (sequelize) => {
+const Search = (sequelize) => {
   sequelize.define(
-    "diet",
+    "search",
     {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
       name: {
         type: DataTypes.STRING,
       },
-      info: {
-        type: DataTypes.TEXT,
-      }
     },
     {
       timestamps: false,
@@ -24,4 +16,4 @@ const Diet = (sequelize) => {
   );
 };
 
-module.exports = Diet;
+module.exports = Search;

@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dietRoutes = require("./routes/diet.js");
 const recipesRouter = require("./routes/recipes");
-const dataCharger = require('./models_database/load_the_database')
+const myQuerie = require('./database_queries/all_queries')
 require("./db.js");
 
 const server = express();
@@ -37,7 +37,6 @@ server.use((err, req, res, next) => {
   console.error(err);
   res.status(status).send(message);
 });
-
 
 //dataCharger()
 module.exports = server;

@@ -1,22 +1,31 @@
 const axios = require("axios");
 require("dotenv").config();
-const fs = require("fs");
-const {API_KEY} = process.env;
-const getBaseData = async () => {
+const {API_KEY,ALL_RESULTS,URL} = process.env;
+const getBaseData = async (request = null) => {
+
+const getAllApi = {
+  apiKey: API_KEY,
+  addRecipeInformation: true,
+  number: 123,
+}
+
+const getNameApi = {
+  apiKey: API_KEY,
+  addRecipeInformation: true,
+  query: request
+}
+
+  const params = request? getNameApi : getAllApi;
+
   try {
     const baseDataBruta = await axios({
     method: "get",
-      url: `https://api.spoonacular.com/recipes/complexSearch`,
-      params: {
-        apiKey: API_KEY,
-        addRecipeInformation: true,
-        number: 200,
-      },
+      url: URL,
+      params,
     });
- 
     return baseDataBruta.data.results;
   } catch (error) {
-    console.log(error)
+    console.log(`${error} 'error --- function -- getBasedata' ${__filename}`)
   }
 };
 

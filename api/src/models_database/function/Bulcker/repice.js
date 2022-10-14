@@ -6,13 +6,13 @@ const updateStep = (array) => {
 
   const newArray = [];
   array.forEach((e) => {
-  
+
     if (e.steps) {
-    
-      const ArrayOfFor= { steps: [] };
+
+      const ArrayOfFor = { steps: [] };
       e.steps.forEach((a) => {
-      /*esto dos map son lo mas importantes de la funcion pueden filtar un array
-      de objetos y devolverme un array de String*/
+        /*esto dos map son lo mas importantes de la funcion pueden filtar un array
+        de objetos y devolverme un array de String*/
         const newPropIng = a.ingredients.map((t) => t.name);
         const newPropEqui = a.equipment.map((t) => t.name);
 
@@ -22,11 +22,11 @@ const updateStep = (array) => {
           ingredients: newPropIng,
           equipment: newPropEqui,
         };
-        
+
         if (e.name) ArrayOfFor['name'] = e.name;
         return ArrayOfFor.steps.push(Obj);
       });
-      
+
       return newArray.push(ArrayOfFor);
     } else if (e.name) {
       return newArray.push({ name: e.name });
@@ -38,20 +38,21 @@ const updateStep = (array) => {
 /* esta funcion recibe un objeto con una propieda array 
 filtrando  objetos que se adptan para poder ingresar a la base de datos
  */
-const tableRepice =(data) =>{
-let count = 1;
- return data.map(elem=> {
+const tableRepice = (data) => {
+  return data.map(elem => {
     return ({
-      id: count++,
       name: elem.title,
       image: elem.image,
       dish_summary: elem.summary,
       step_by_step: updateStep(elem.analyzedInstructions),
       healthy_food_score: elem.healthScore,
+      diets: elem.diets,
     });
   });
-  console.log('filtrado y limpieza exitoso : ) !!!!')
 }
+
+
+
 
 module.exports = tableRepice
 
