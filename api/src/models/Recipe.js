@@ -7,9 +7,8 @@ const Recipe = (sequelize) => {
     "recipe",
     {
       id: {
-        type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+
       },
       name: {
         type: DataTypes.STRING,
@@ -34,5 +33,7 @@ const Recipe = (sequelize) => {
     }
   );
 };
+
+
 
 module.exports = Recipe;
