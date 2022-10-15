@@ -5,31 +5,37 @@ const { tableInterme } = require('../function/Bulcker/intermediate_table')
 const filteringResApi = require('./result_filtering')
 
 const requestOfServer = async (request, repeat) => {
+  
 
-    const caseInsible = request.toLowerCase()
+        const caseInsible = request.toLowerCase()
 
-    const resultSearch = await findSearch(caseInsible)
-    console.log(resultSearch)
-    const res = await miFildLocal(caseInsible)
-    resultSearch && repeat === 0 && res.length ?
-        console.log(`se han sumado ${res.length} nuevos datos a la base de datos!!`):
-        console.log(`${res.length} datos fueron encotrados en nuestra base de datos`)
-    if (resultSearch) return await miFildLocal(caseInsible)
-    if (repeat === 0) return (`La Receta llama ${request} no se ha encontrado.`)
+        const resultSearch = await findSearch(caseInsible)
+        console.log(resultSearch)
+        const resDataLocal = await miFildLocal(caseInsible)
+        resultSearch && repeat === 0 && resDataLocal ?
+            console.log(`se han sumado ${resDataLocal} nuevos datos a la base de datos!!`) :
+            console.log(`${resDataLocal} datos fueron encotrados en nuestra base de datos`)
+        if (resultSearch) return await miFildLocal(caseInsible)
 
-    await agreeSearh(caseInsible)
+        if (resDataLocal === 0) return (`La Receta llama ${request} no se ha encontrado.`)
 
-    if (!resultSearch) {
-        const dataBruteName = await getBaseData(caseInsible);
-        const recipeData = await tableRepice(dataBruteName);
-        const newApi = await filteringResApi(recipeData)
-        tableInterme(newApi)
+        await agreeSearh(caseInsible)
+
+        if (!resultSearch) {
+            const dataBruteName = await getBaseData(caseInsible);
+            const recipeData = await tableRepice(dataBruteName);
+            const newApi = await filteringResApi(recipeData)
+            tableInterme(newApi)
 
 
-    }
+        }
 
-    return requestOfServer(caseInsible, repeat - 1)
+        return requestOfServer(caseInsible, repeat - 1)
+ 
 }
+
+
+
 
 const mySwitchSearch = async (request = undefined) => {
 

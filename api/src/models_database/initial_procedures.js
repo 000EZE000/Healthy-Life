@@ -18,6 +18,6 @@ const mySwitch = async (request) => {
     switchSear ? loadDatabase() :mySwitchSearch(request)
 }
 
-mySwitch()
 
-module.exports = loadDatabase;
+
+module.exports = mySwitch;

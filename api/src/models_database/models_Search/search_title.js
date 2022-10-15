@@ -32,9 +32,7 @@ const miFildLocal = async (request) => {
     },
 
   })
-  console.log('Busqueda Terminada');
-
-  return myResult
+  return myResult.length
 }
 
 

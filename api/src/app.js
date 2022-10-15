@@ -4,13 +4,11 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dietRoutes = require("./routes/diet.js");
 const recipesRouter = require("./routes/recipes");
+const runDatabase = require('./routes/run_database')
 const myQuerie = require('./database_queries/all_queries')
 require("./db.js");
-
 const server = express();
-
 server.name = "API";
-
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
@@ -28,7 +26,7 @@ server.use((req, res, next) => {
 
 server.use("/diet", dietRoutes);
 server.use("/recipes", recipesRouter);
-
+server.use('/', runDatabase);
 // Error catching endware.
 server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars

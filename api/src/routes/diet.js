@@ -5,6 +5,9 @@ const { Router } = require('express');
 
 const dietRouter = Router();
 
+
+dietRouter.get('/',)
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 

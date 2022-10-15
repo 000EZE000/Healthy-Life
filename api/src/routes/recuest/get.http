@@ -1,0 +1,124 @@
+
+###
+Nombres
+###
+GET https://api.spoonacular.com/recipes/716429/information?apiKey=24a6056c26644d56bcdf9518140b8922&includeNutrition=true
+
+
+
+
+###
+GET http://localhost:3003/
+
+
+
+###
+
+GET https://api.spoonacular.com/recipes/complexSearch?apiKey=24a6056c26644d56bcdf9518140b8922&addRecipeInformation=true&number=10000
+
+###
+
+GET http://localhost:3003/recipes/repice?title=potato
+
+
+###
+malo
+####
+GET http://localhost:3003/recipes/repice?title=aaaaaa
+
+####
+id
+####
+
+GET http://localhost:3003/recipes/138
+
+
+###
+####
+id
+####
+
+GET http://localhost:3003/recipes/taba/3
+
+
+###
+
+Post
+###
+
+POST http://localhost:3003/recipes
+content-Type: application/json
+
+{
+  "name": "papas con ravolioles con tuko",
+  "diets":["primal","vegan"],
+  "dish_summary": "You can never have too many soup recipes, so give Azteca Soup a try. One serving contains <b>337 calories</b>, <b>6g of protein</b>, and <b>19g of fat</b>. This recipe serves 6 and costs $1.82 per serving. Not a lot of people made this recipe, and 1 would say it hit the spot. It will be a hit at your <b>Autumn</b> event. From preparation to the plate, this recipe takes approximately <b>45 minutes</b>. A mixture of jalapeno pepper, cumin, basil shreds, and a handful of other ingredients are all it takes to make this recipe so yummy. It is a good option if you're following a <b>gluten free and vegetarian</b> diet. All things considered, we decided this recipe <b>deserves a spoonacular score of 51%</b>. This score is solid. Try <a href=\"https://spoonacular.com/recipes/azteca-soup-adopted-101942\">Azteca Soup Adopted</a>, <a href=\"https://spoonacular.com/recipes/azteca-155294\">Azteca</a>, and <a href=\"https://spoonacular.com/recipes/mexican-style-meat-and-vegetable-stew-aztecas-molcajete-101934\">Mexican Style Meat and Vegetable Stew - Azteca's Molcajete</a> for similar recipes.",
+  "healthy_food_score": "1",
+  "step_by_step": [
+    {
+      "steps": [
+        {
+          "step_number": 1,
+          "step": "In a medium saucepan, saute garlic, onions, jalapeno pepper, and celery in the olive oil for about 5 minutes.",
+          "ingredients": [
+            "jalapeno pepper",
+            "olive oil",
+            "celery",
+            "garlic",
+            "onion"
+          ],
+          "equipment": [
+            "sauce pan"
+          ]
+        },
+        {
+          "step_number": 2,
+          "step": "Add tomato pieces, chili powder, and cumin, and cook down over medium heat for about 10 minutes, stirring often.",
+          "ingredients": [
+            "chili powder",
+            "tomato",
+            "cumin"
+          ],
+          "equipment": []
+        },
+        {
+          "step_number": 3,
+          "step": "Add corn, basil, reserved tomato juice, and stock, bring to a boil, then reduce heat and simmer 15 minutes.When ready to serve, remove soup from heat and stir in the lime juice and avocado. Break several nacho chips into each bowl, ladle in the soup, then top each with a spoonful of sour cream. Toss on a few basil shreds and stick a nacho chip on top.",
+          "ingredients": [
+            "tomato juice",
+            "tortilla chips",
+            "lime juice",
+            "sour cream",
+            "avocado",
+            "basil",
+            "stock",
+            "corn",
+            "soup"
+          ],
+          "equipment": [
+            "ladle",
+            "bowl"
+          ]
+        },
+        {
+          "step_number": 4,
+          "step": "Serve immediately.",
+          "ingredients": [],
+          "equipment": []
+        },
+        {
+          "step_number": 5,
+          "step": "Serve hot to 6 people as complete lunch - or as a substantial first course.Comments: A wonderfully tasty, quick, low calorie, and filling soup - fit for Montezuma after a hard day at the sacrificial altar.",
+          "ingredients": [
+            "soup"
+          ],
+          "equipment": []
+        }
+      ]
+    }
+  ],
+  "image": "https://spoonacular.com/recipeImages/633194-312x231.jpg"
+}
+
+#hola
+###

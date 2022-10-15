@@ -15,6 +15,11 @@ const myQuerie = async (recipe) => {
     console.log(await myDictionary[recipe]())
 }
 
-myQuerie('search')
+
+const myId = async (id) => {
+  
+}
+
+//myQuerie('recipe','tomato')
 
 module.exports = myQuerie;
