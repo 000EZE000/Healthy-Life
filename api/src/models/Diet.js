@@ -16,6 +16,15 @@ const Diet = (sequelize) => {
       },
       info: {
         type: DataTypes.TEXT,
+      },
+      image:{
+        type:DataTypes.STRING,
+        validator:{
+          isUrl:{
+            args:true,
+            msg:'must be a url'
+          }
+        }
       }
     },
     {

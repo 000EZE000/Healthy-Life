@@ -12,12 +12,26 @@ const myQuerie = async (recipe) => {
     }
     !myDictionary[recipe] ? recipe = 'error' : null;
 
-    console.log(await myDictionary[recipe]())
+
+    const result = await myDictionary[recipe]()
+ 
+    return Array.isArray(result) ?
+        result.forEach((e,i) => {
+        if(e.id == 1) console.log(e.image)
+        
+}) :
+        null;
+
+
+
+
 }
+
+//myQuerie('diet')
 
 
 const myId = async (id) => {
-  
+
 }
 
 //myQuerie('recipe','tomato')

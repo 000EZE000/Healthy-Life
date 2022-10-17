@@ -7,9 +7,9 @@ const Recipe = (sequelize) => {
     "recipe",
     {
       id: {
-        type:DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-
+        autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING,

@@ -1,0 +1,30 @@
+
+
+###
+#DIET
+###
+#GET
+GET  http://localhost:3003/diet
+###
+#GET RELATIONS
+
+GET http://localhost:3003/diet/relations/1
+
+###
+#POST
+
+POST http://localhost:3003/diet
+Content-Type: application/json
+
+{
+    "name":"Luna",
+    "info":"esto es una prueba",
+    "image":"https://media.istockphoto.com/photos/hamburger-table-scene-top-view-over-dark-wood-picture-id1252796974?k=20&m=1252796974&s=170667a&w=0&h=0cZBjhjVEnbNt2o829xvZ6jeSDGdvrWXS34N-_FDZhQ="
+    
+}
+
+#DELETE
+
+###
+
+DELETE http://localhost:3003/diet/14

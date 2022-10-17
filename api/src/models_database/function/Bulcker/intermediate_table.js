@@ -1,6 +1,6 @@
 
 const { Diet, Recipe } = require('../../../db')
-
+const myPackDiet = require('./diet')
 const cleanData = (data) => {
     const newArray = data.map(e => {
         JSON.stringify(e.diets) === '[]' ? e.diets.push('noDiet') : null;
@@ -8,16 +8,19 @@ const cleanData = (data) => {
     });
     return newArray;
 }
+
 const tableInterme = async (array) => {
     try {
+        const myDiet = myPackDiet()
         const newArray = cleanData(array)
         array.forEach(async (e, index) => {
             const recipeFor = await Recipe.create(e)
-            newArray[index].forEach(async a => {
+            newArray[index].forEach(async nameDiet => {
                 const req = await Diet.findOrCreate({
-                    where: { name:a},
+                    where: myDiet[nameDiet],
+                    default: myDiet[nameDiet] 
                 });
-            
+
                 req[0].addRecipes([recipeFor]);
             })
         })

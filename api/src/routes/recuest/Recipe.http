@@ -18,19 +18,19 @@ GET https://api.spoonacular.com/recipes/complexSearch?apiKey=24a6056c26644d56bcd
 
 ###
 
-GET http://localhost:3003/recipes/repice?title=potato
+GET http://localhost:3003/recipes/repice?title=papas con ravolcon tuko
 
 
 ###
 malo
 ####
-GET http://localhost:3003/recipes/repice?title=aaaaaa
+GET http://localhost:3003/recipes/repice?title=papas ravol tuko
 
 ####
 id
 ####
 
-GET http://localhost:3003/recipes/138
+GET http://localhost:3003/recipes/6
 
 
 ###
@@ -38,7 +38,7 @@ GET http://localhost:3003/recipes/138
 id
 ####
 
-GET http://localhost:3003/recipes/taba/3
+GET http://localhost:3003/recipes/relationship/50
 
 
 ###
@@ -50,7 +50,7 @@ POST http://localhost:3003/recipes
 content-Type: application/json
 
 {
-  "name": "papas con ravolioles con tuko",
+  "name": "papas ravol tuko",
   "diets":["primal","vegan"],
   "dish_summary": "You can never have too many soup recipes, so give Azteca Soup a try. One serving contains <b>337 calories</b>, <b>6g of protein</b>, and <b>19g of fat</b>. This recipe serves 6 and costs $1.82 per serving. Not a lot of people made this recipe, and 1 would say it hit the spot. It will be a hit at your <b>Autumn</b> event. From preparation to the plate, this recipe takes approximately <b>45 minutes</b>. A mixture of jalapeno pepper, cumin, basil shreds, and a handful of other ingredients are all it takes to make this recipe so yummy. It is a good option if you're following a <b>gluten free and vegetarian</b> diet. All things considered, we decided this recipe <b>deserves a spoonacular score of 51%</b>. This score is solid. Try <a href=\"https://spoonacular.com/recipes/azteca-soup-adopted-101942\">Azteca Soup Adopted</a>, <a href=\"https://spoonacular.com/recipes/azteca-155294\">Azteca</a>, and <a href=\"https://spoonacular.com/recipes/mexican-style-meat-and-vegetable-stew-aztecas-molcajete-101934\">Mexican Style Meat and Vegetable Stew - Azteca's Molcajete</a> for similar recipes.",
   "healthy_food_score": "1",
@@ -122,3 +122,23 @@ content-Type: application/json
 
 #hola
 ###
+#PUT
+
+PUT http://localhost:3003/recipes
+Content-Type: application/json
+
+[
+  50,
+  {
+  "diets":["vegan","primal"],
+  "name": "Chocolateanut Butter Cinnamon Smoothie",
+  "dish_summary": "Chocolate Peanut Butter Cinnamon Smoothie is a <b>gluten free, dairy free, and fodmap friendly</b> morn meal. This recipe serves 1 and costs $1.5 per serving. One serving contains <b>417 calories</b>, <b>28g of protein</b>, and <b>21g of fat</b>. 5 people were impressed by this recipe. Head to the store and pick up elmhurst harvest chocolate almond milk, banana, cinnamon, and a few other things to make it today. From preparation to the plate, this recipe takes approximately <b>45 minutes</b>. All things considered, we decided this recipe <b>deserves a spoonacular score of 96%</b>. This score is great. Try <a href=\"https://spoonacular.com/recipes/peanut-butter-chocolate-chip-protein-smoothie-with-kura-smoothie-starter-629513\">Peanut Butter Chocolate Chip Protein Smoothie with Kura Smoothie Starter</a>, <a href=\"https://spoonacular.com/recipes/chocolate-peanut-butter-smoothie-585716\">Chocolate Peanut Butter Smoothie</a>, and <a href=\"https://spoonacular.com/recipes/chocolate-peanut-butter-smoothie-715680\">Chocolate Peanut Butter Smoothie</a> for similar recipes.",
+  "healthy_food_score": 1,
+  "step_by_step": [],
+  "image": "https://spoonacular.com/recipeImages/782622-312x231.png"
+}
+]
+
+###
+#DELETE
+DELETE http://localhost:3003/recipes/6

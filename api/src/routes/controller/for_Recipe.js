@@ -1,89 +1,156 @@
-const { Recipe, Op } = require('../../db');
+const { Recipe, Op, Diet } = require('../../db');
+const mySwitch = require('../../models_database/initial_procedures')
+const { tableInterme } = require('../../models_database/function/Bulcker/intermediate_table')
+const {isId,validatorUpdateForRecipe,bodysuitCheckeForRecipe} = require('./validate')
 
-const isString = (array) => {
-    let valiNum = true
-    let valiEmpty = true
-    array.forEach(e => {
-        e === '' ? valiEmpty = false : null;
-        typeof e !== 'string' ? valiNum = false : null
 
-    })
-
-    return array[0] && valiNum && valiEmpty ? true : false;
+////////////////////////////////////
+//ERROR
+////////////////////////////////////
+const myMessageError = (error) => {
+    return `${error.message}, file error ${__filename}`
 }
 
-const isUrl = (data) => {
-    const myExpRe = /^(\w{5})(:\/{2}).+\.+\w{3}/igm;
-    return myExpRe.test(data)
-}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*GET */
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const controllerGetTitle = async ({ title }) => {
 
-const isId = (Id) => {
-    let vali = Number(Id) ? true : false;
-    if (!vali) return false
-
-    return true
-}
-
-const myReat = async (name) => {
+    await mySwitch(title)
+    
     const myRes = await Recipe.findAll({
         raw: true,
         where: {
             name: {
-                [Op.iLike]: `${name}`,
+                [Op.iLike]: `%${title}%`,
             },
         },
         attributes: {
             exclude: ['dish_summary', 'step_by_step', 'image']
         }
+    });
+    if (!myRes[0]) throw new Error((`La Receta ${title} no se ha encontrado.`))
+    return myRes
+}
 
+
+const controllerRelationship = async ({ ids }) => {
+    const relationshipDiet = await Recipe.findAll({
+        attributes: ["name"],
+        where: {
+            id: ids
+        },
+        include: [{
+            model: Diet,
+            attributes: ["name", "id"],
+            through: { attributes: [], }
+        }]
     })
 
-    return !myRes[0]
+    return relationshipDiet
+
 }
 
 
+const controllerId = async ({ id }) => {
 
-const bodysuitChecker = async(body) => {
-    const {
-        name,
-        dish_summary,
-        healthy_food_score,
-        step_by_step,
-        image,
-        diets,
-    } = body
+    const myVali = isId(id)
 
-    let vali =
-        name && dish_summary &&
-            healthy_food_score &&
-            step_by_step && image &&
-            diets ? true : false;
+    if (!myVali[0]) throw new Error(myVali[1]);
 
-    if (!vali) return [false, 'no se han cargado los datos minimos'];
+    const myRes = await Recipe.findByPk(Number(id))
 
-    vali = await myReat(name) ? true : false;
+    if (myRes) return myRes;
 
-    if (!vali) return [false,` La reseta ${name} ya lo tiene asignado otra receta`];
+    throw new Error(`the id entered is wrong`)
 
-    vali = isString([name, image, dish_summary]) ? true : false;
+}
 
-    if (!vali) return [false, `${name}  o ${image}  o ${dish_summary} no son String`]
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*POST*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    vali = Number(healthy_food_score) ? true : false;
 
-    if (!vali) return [false, `${healthy_food_score} no es un numero`]
+const myPostRecipe = async (data) => {
 
-    vali = Array.isArray(diets) && Array.isArray(step_by_step) ? true : false;
+    const myRes = await bodysuitCheckeForRecipe(data)
+    if (!myRes[0]) throw new Error(myRes[1]);
+    await tableInterme([data])
+    return myRes[1]
+}
 
-    if (!vali) return [false, `${diets} y ${step_by_step} deben ser array`]
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*PUT*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    vali = isUrl(image) ? true : false;
 
-    if (!vali) return [false, `${image} no tiene el fomato de Url de tipo imagen, un Ej:https://i.blogs.es/af0d35/gim/840_560.jpg`]
+const updateDietForRecipe = async (idData, diets) => {
 
-    return [true, `La receta ${name} se ha subido con Exito!!!`]
+
+    const recipeForFunction = await Recipe.findOrCreate({
+        where: { id: idData }
+    })
+    const recipeForObj = await Recipe.findByPk(idData)
+    await recipeForFunction[0].setDiets(null)
+
+    diets.forEach(async e => {
+        const dietDataBase = await Diet.findOrCreate({
+            where: { name: e }
+        })
+        dietDataBase[0].addRecipes(recipeForObj)
+    });
+
+}
+
+const controllerUpdate = async (data) => {
+    const [idRecipe, recipeUpdate] = data;
+
+    const myRes = await  validatorUpdateForRecipe(data);
+
+    if (!myRes[0]) throw new Error(myRes[1]);
+
+    await Recipe.update(
+        recipeUpdate,
+        {
+            where: { id: idRecipe }
+        }
+    )
+    await updateDietForRecipe(idRecipe, recipeUpdate["diets"])
+
+    return myRes[1]
+
 }
 
 
-module.exports = { bodysuitChecker, isId }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*DELETE*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const controllerDelete = async ({ ids }) => {
+
+    const myVali = isId(ids)
+    if (!myVali[0]) throw new Error(myVali[1]);
+
+    const recipeForFunction = await Recipe.findOrCreate({
+        where: { id: ids }
+    })
+    await recipeForFunction[0].setDiets(null)
+    await Recipe.destroy({
+        where:{id:ids}
+    })
+
+    return `the recipe with the id ${ids} has been deleted successfully`
+
+}
+
+
+module.exports = {
+    controllerId,
+    controllerUpdate,
+    controllerGetTitle,
+    controllerRelationship,
+    myMessageError,
+    myPostRecipe,
+    controllerDelete
+}

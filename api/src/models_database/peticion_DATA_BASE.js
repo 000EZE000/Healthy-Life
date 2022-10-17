@@ -6,7 +6,7 @@ const getBaseData = async (request = null) => {
 const getAllApi = {
   apiKey: API_KEY,
   addRecipeInformation: true,
-  number: 123,
+  number: ALL_RESULTS,
 }
 
 const getNameApi = {
