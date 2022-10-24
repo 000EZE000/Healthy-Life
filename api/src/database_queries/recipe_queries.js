@@ -14,6 +14,29 @@ module.exports = querieRecipAll;
 // anda no tocar
 
 
+
+
+// const alphabetically =async()=>{
+// const myOrder = await Recipe.findAll({
+//     raw:true,
+//     order:[['name', 'ASC' ]]
+// })
+
+// console.log(myOrder[0])
+// }
+
+//alphabetically()
+
+// const healthScore =async()=>{
+//     const myOrder = await Recipe.findAll({
+//         raw:true,
+//         order:[['healthy_food_score', 'DESC' ]]
+//     })
+    
+//     }
+
+  //healthScore()  
+
 // const querieRecipAll = async (data) => {
 //     console.log(data)
 //     const res = await Recipe.findAll({ raw: true,

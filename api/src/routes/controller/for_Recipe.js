@@ -1,7 +1,7 @@
 const { Recipe, Op, Diet } = require('../../db');
 const mySwitch = require('../../models_database/initial_procedures')
 const { tableInterme } = require('../../models_database/function/Bulcker/intermediate_table')
-const {isId,validatorUpdateForRecipe,bodysuitCheckeForRecipe} = require('./validate')
+const { isId, validatorUpdateForRecipe, bodysuitCheckeForRecipe } = require('./validate')
 
 
 ////////////////////////////////////
@@ -15,29 +15,77 @@ const myMessageError = (error) => {
 /*GET */
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const controllerGetTitle = async ({ title }) => {
-
-    await mySwitch(title)
-    
+const controllerAllRecipes = async () => {
     const myRes = await Recipe.findAll({
-        raw: true,
-        where: {
-            name: {
-                [Op.iLike]: `%${title}%`,
-            },
-        },
         attributes: {
-            exclude: ['dish_summary', 'step_by_step', 'image']
-        }
-    });
-    if (!myRes[0]) throw new Error((`La Receta ${title} no se ha encontrado.`))
+            exclude: ['dish_summary', 'step_by_step']
+        },
+        include: [{
+            model: Diet,
+            attributes: ["name", "id"],
+        }]
+    })
+
     return myRes
 }
 
 
+const controllerGetName = async ({ name }) => {
+
+    await mySwitch(name)
+
+    const myRes = await Recipe.findAll({
+        raw: true,
+        where: {
+            name: {
+                [Op.iLike]: `%${name}%`,
+            },
+        },
+        attributes: {
+            exclude: ['dish_summary', 'step_by_step']
+        }
+    });
+    if (!myRes[0]) return []
+    return myRes
+}
+
+
+const controllerAlpha = async () => {
+
+    const myOrder = await Recipe.findAll({
+        order: [['name', 'ASC']],
+        attributes: {
+            exclude: ['step_by_step', 'dish_summary']
+        },
+        include: [{
+            model: Diet,
+            attributes: ["name", "id"],
+            through: { attributes: [], }
+        }]
+    })
+
+    return myOrder
+}
+
+const controllerhealthScore = async () => {
+    const myOrder = await Recipe.findAll({
+        order: [['healthy_food_score', 'DESC']],
+        attributes: {
+            exclude: ['step_by_step', 'dish_summary']
+        },
+        include: [{
+            model: Diet,
+            attributes: ["name", "id"],
+            through: { attributes: [], }
+        }]
+    })
+
+    return myOrder
+}
+
 const controllerRelationship = async ({ ids }) => {
     const relationshipDiet = await Recipe.findAll({
-        attributes: ["name"],
+        attributes: [],
         where: {
             id: ids
         },
@@ -106,7 +154,7 @@ const updateDietForRecipe = async (idData, diets) => {
 const controllerUpdate = async (data) => {
     const [idRecipe, recipeUpdate] = data;
 
-    const myRes = await  validatorUpdateForRecipe(data);
+    const myRes = await validatorUpdateForRecipe(data);
 
     if (!myRes[0]) throw new Error(myRes[1]);
 
@@ -137,7 +185,7 @@ const controllerDelete = async ({ ids }) => {
     })
     await recipeForFunction[0].setDiets(null)
     await Recipe.destroy({
-        where:{id:ids}
+        where: { id: ids }
     })
 
     return `the recipe with the id ${ids} has been deleted successfully`
@@ -148,9 +196,12 @@ const controllerDelete = async ({ ids }) => {
 module.exports = {
     controllerId,
     controllerUpdate,
-    controllerGetTitle,
+    controllerGetName,
     controllerRelationship,
     myMessageError,
     myPostRecipe,
-    controllerDelete
+    controllerDelete,
+    controllerAlpha,
+    controllerhealthScore,
+    controllerAllRecipes,
 }

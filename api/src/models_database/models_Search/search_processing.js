@@ -10,14 +10,9 @@ const requestOfServer = async (request, repeat) => {
         const caseInsible = request.toLowerCase()
 
         const resultSearch = await findSearch(caseInsible)
-        console.log(resultSearch)
         const resDataLocal = await miFildLocal(caseInsible)
-        resultSearch && repeat === 0 && resDataLocal ?
-            console.log(`se han sumado ${resDataLocal} nuevos datos a la base de datos!!`) :
-            console.log(`${resDataLocal} datos fueron encotrados en nuestra base de datos`)
         if (resultSearch) return await miFildLocal(caseInsible)
-
-        if (resDataLocal === 0) return (`La Receta llama ${request} no se ha encontrado.`)
+        if (resDataLocal === 0) return false
 
         await agreeSearh(caseInsible)
 

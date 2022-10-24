@@ -1,51 +1,57 @@
 
 ###
-Nombres
+#Nombres
 ###
 GET https://api.spoonacular.com/recipes/716429/information?apiKey=24a6056c26644d56bcdf9518140b8922&includeNutrition=true
 
-
+###
+GET https://api.spoonacular.com/recipes/complexSearch?apiKey=24a6056c26644d56bcdf9518140b8922&addRecipeInformation=true&number=10000
 
 
 ###
+#Start
 GET http://localhost:3003/
 
 
 
 ###
-
-GET https://api.spoonacular.com/recipes/complexSearch?apiKey=24a6056c26644d56bcdf9518140b8922&addRecipeInformation=true&number=10000
+#allRecipe
+GET http://localhost:3003/recipes/all_recipes
+###
+###
+#Title
+GET  http://localhost:3003/recipes/search?name=salad
 
 ###
 
-GET http://localhost:3003/recipes/repice?title=papas con ravolcon tuko
-
 
 ###
-malo
-####
-GET http://localhost:3003/recipes/repice?title=papas ravol tuko
+#Alphabetically
+GET http://localhost:3003/recipes/order/alphabetically
 
 ####
-id
+
+####
+#health_score
+GET http://localhost:3003/recipes/order/health_score
 ####
 
-GET http://localhost:3003/recipes/6
 
-
-###
 ####
-id
-####
-
-GET http://localhost:3003/recipes/relationship/50
+#ID
+GET http://localhost:3003/recipes/168
 
 
 ###
 
-Post
+####
+#RelationShip
+GET http://localhost:3003/recipes/relationship/168
+
 ###
 
+###
+#POST
 POST http://localhost:3003/recipes
 content-Type: application/json
 

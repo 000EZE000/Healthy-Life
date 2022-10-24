@@ -1,0 +1,554 @@
+import React, { useEffect, useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createRecipe } from '../../redux/actions/recipe_actions';
+export default function CreateRecipe() {
+  const dispatch = useDispatch();
+  const dietDataBase = useSelector((store) =>
+    store.dietReduce.diets?.map((diet) => diet.name)
+  );
+  const dietsRef = useRef([]);
+  const stepsRef = useRef([]);
+  const formRef = useRef(false);
+  const errorRef = useRef({
+    name: false,
+    diets: false,
+    dish: false,
+    healthy: false,
+    steps: false,
+    image: false,
+  });
+  const [stepsRend, setStepsRend] = useState(false);
+  const [dietRen, setDietRen] = useState(false);
+  let [countStep, setCountStep] = useState(1);
+
+  const [form, setForm] = useState({
+    name: '',
+    diets: [],
+    dish_summary: '',
+    healthy_food_score: '',
+    step_by_step: [],
+    image: '',
+    trol: false,
+  });
+
+  useEffect(() => {
+    handleInputChecker();
+  }, [form, dietDataBase]);
+
+  useEffect(() => {
+    window.addEventListener('keyup', accti);
+    return () => {
+      window.removeEventListener('keyup', accti);
+    };
+  });
+
+  const accti = () => {
+    setForm({
+      ...form,
+      trol: !form.trol,
+    });
+  };
+
+  // useEffect(() => {
+  //   return () => {
+  //     setStepsRend(null);
+  //   };
+  // }, [form.step_by_step]);
+
+  //////////////////////////////////////
+  ///comprobaciones
+
+  const handleInputChecker = () => {
+    const nameArray = form.name.split(' ');
+    if (nameArray.length > 1) {
+      errorRef.current.name = true;
+    } else errorRef.current.name = false;
+
+    const veganOrPes = form.diets.find(
+      (e) => e === 'vegan' || e === 'pescatarian'
+    );
+
+    if (veganOrPes) {
+      errorRef.current.diets = true;
+    } else errorRef.current.diets = false;
+
+    const dishArray = form.dish_summary.split(' ');
+    if (dishArray.length < 31) {
+      errorRef.current.dish = true;
+    } else errorRef.current.dish = false;
+
+    if (form.healthy_food_score) {
+      errorRef.current.healthy = true;
+    } else errorRef.current.healthy = false;
+
+    if (!stepsRef.current[0]) {
+      errorRef.current.steps = true;
+    } else errorRef.current.steps = false;
+
+    const myExpRe = /^(\w{5})(:\/{2}).+\.+(png|jpg|jpeg|gif)$/gim;
+    if (myExpRe.test(form.image)) {
+      errorRef.current.image = true;
+    } else errorRef.current.image = false;
+  };
+  // /////////
+
+  ///////////
+
+  const funHealthyMessage = (boolean) => {
+    return !boolean ? <p>OK!!</p> : <p>must have at least 30 words</p>;
+  };
+  const messageHealthyVeri = funHealthyMessage(errorRef.current.dish);
+
+  const messsageDietVerif = (boolean, array) => {
+    const veganOrPes = form.diets.find(
+      (e) => e === 'vegan' || e === 'pescatarian'
+    );
+    if (boolean && veganOrPes)
+      return (
+        <p>{`you have selected ${
+          veganOrPes === 'vegan' ? 'vegan' : 'pescatarian'
+        } you will no longer be able to select ${
+          veganOrPes === 'vegan' ? 'pescatarian' : 'vegan'
+        } `}</p>
+      );
+
+    if (!boolean && array[0]) return <p>Good!!</p>;
+
+    if (!boolean && !array[0])
+      return <p>if you do not put diets, categorize it with No diets</p>;
+  };
+
+  const messageDeitVerication = messsageDietVerif(
+    errorRef.current.diets,
+    form.diets
+  );
+
+  const nameVerification = (boolenan) => {
+    if (form.name === '') return;
+    return boolenan ? <p>Ok!!</p> : <p>must have at least 2 words</p>;
+  };
+
+  const comprobacionsName = nameVerification(errorRef.current.name);
+
+  const healVerification = (boolean) => {
+    return boolean ? <p>OK!!</p> : <p>must be a number from 1 to 100</p>;
+  };
+
+  const messageHeal = healVerification(errorRef.current.healthy);
+
+  const stepsVerification = (boolean) => {
+    return (
+      boolean && (
+        <p>
+          if you want you can add the steps for the preparation of the recipe
+          !!!
+        </p>
+      )
+    );
+  };
+
+  const messageSpeps = stepsVerification(errorRef.current.steps);
+
+  const imageVerification = (boolean) => {
+    return !boolean ? (
+      <p>
+        the format of the image should be a url with this format
+        <i> https:\\whatever -thing/myimage.png `</i>
+      </p>
+    ) : (
+      <p>Url is Ok!!!!!!</p>
+    );
+  };
+
+  const messageImg = imageVerification(errorRef.current.image);
+  /////////////////////////////////////////
+
+  ///////////////////////////////////////////////////
+  ////name
+  const handleOnChangeName = (event) => {
+    const value = event?.target?.value;
+    const nameArrySpace = value.split(' ');
+    if (nameArrySpace.length < 5 && nameArrySpace.at(-1).length < 12) {
+      setForm({
+        ...form,
+        name: value,
+      });
+    }
+  };
+
+  const nameDietInput = (
+    <>
+      <label htmlFor="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        value={form.name}
+        onChange={handleOnChangeName}
+        autoComplete="off"
+      />
+    </>
+  );
+
+  // ///////////
+  ///diet
+
+  const handleOnClickRecet = () => {
+    dietsRef.current = [];
+    errorRef.current.diets = true;
+    setDietRen(listDiet(dietDataBase));
+    setForm({
+      ...form,
+      diets: [],
+    });
+  };
+
+  const buttonResetDiet = (
+    <input type="button" value="Reset" onClick={handleOnClickRecet} />
+  );
+
+  const veganOrPesca = (strin, array) => {
+    const mydictionarDiet = {
+      vegan: () => array.find((e) => e === 'pescatarian'),
+      pescatarian: () => array.find((e) => e === 'vegan'),
+    };
+
+    return mydictionarDiet[strin] ? mydictionarDiet[strin]() : false;
+  };
+  const setOfDiets = (event) => {
+    const myDiet = event.target.value;
+    if (veganOrPesca(myDiet, form.diets))
+      return setForm({ ...form, trol: !form.trol });
+    setForm({ ...form, diets: [...form.diets, myDiet] });
+  };
+
+  ////
+
+  const noRepeatDiet = (stringDiet, array) => {
+    const repeat = array.find((e) => e === stringDiet);
+    return repeat ? false : true;
+  };
+
+  const listDiet = (array) => {
+    const dataArr = new Set(array);
+
+    let result = [...dataArr];
+
+    result = result.filter((e) => e !== 'noDiet');
+
+    return result?.map((diet, index) => {
+      //
+      if (noRepeatDiet(diet, form.diets)) {
+        return (
+          <div key={index}>
+            <input
+              key={index}
+              type="button"
+              value={diet}
+              onClick={setOfDiets}
+            />
+          </div>
+        );
+      }
+
+      return (
+        <div key={index}>
+          <input key={index} type="button" value={diet} name={diet} disabled />
+        </div>
+      );
+    });
+  };
+
+  const dietRenderFi = dietRen[0] ? dietRen : <div>Diets</div>;
+  const dietResetFi = form.diets[0] && buttonResetDiet;
+  useEffect(() => {
+    setDietRen(listDiet(dietDataBase));
+  }, [form]);
+  /////////////////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////////
+  ////dish_summary
+  const handleOnchaldDish = (event) => {
+    const value = event.target.value;
+    const dishLengthArr = value.split(' ');
+
+    if (
+      dishLengthArr.length > 0 &&
+      dishLengthArr.length < 200 &&
+      dishLengthArr.at(-1).length < 12
+    ) {
+      setForm({
+        ...form,
+        dish_summary: value,
+      });
+    }
+  };
+
+  const dishSumary = (
+    <textarea
+      name="a"
+      id=""
+      cols="30"
+      rows="10"
+      value={form.dish_summary}
+      onChange={handleOnchaldDish}
+    ></textarea>
+  );
+  ///////////////////////////////////////////////////
+  // ///Scorre
+
+  const handleOnchangeheal = (event) => {
+    const value = event.target.value;
+    if (!Number(value) && value)
+      return alert('healthy food score is scored with numbers');
+    if (!value) return setForm({ ...form, healthy_food_score: value });
+    const myRes =
+      Number(value) === isNaN(Number(value))
+        ? false
+        : value > 0 && value < 101
+        ? true
+        : false;
+    if (myRes) return setForm({ ...form, healthy_food_score: value });
+  };
+
+  const healthyFoodScore = (
+    <div>
+      <label htmlFor="healthy">healthyFoodScore</label>
+      <input
+        type="text"
+        name="healthy"
+        value={form.healthy_food_score}
+        onChange={handleOnchangeheal}
+        autoComplete="off"
+      />
+    </div>
+  );
+
+  /////////////////////////////////////
+  ///////////////////////////////////////
+  ////IMG
+  const handleOnchangeImg = (event) => {
+    const value = event.target.value;
+    const myExpRe = /^(\w{5})(:\/{2}).+\.+(png|jpg|jpeg|gif)$/gim;
+    if (myExpRe.test(value)) {
+      setForm({
+        ...form,
+        image: value,
+      });
+    }
+  };
+
+  const imgInput = (
+    <div>
+      <label htmlFor="img">Imagen Url</label>
+      <input
+        type="text"
+        onChange={handleOnchangeImg}
+        name="img"
+        value={form.img}
+      />
+    </div>
+  );
+
+  ////////////////////////////////////////
+
+  //////////////////Steps
+
+  const handleOnClickStepFewer = (event) => {
+    if (countStep > 1) return setCountStep(--countStep);
+  };
+  const handleOnClickStepMore = (event) => {
+    if (countStep < 10) return setCountStep(++countStep);
+  };
+  const handleOnClickCreate = (event) => {
+    if (countStep < 0 && 11 < countStep) return;
+    setStepsRend(stepsCluter(countStep));
+  };
+  const startSteps = (
+    <div>
+      <input type="button" value="more steps" onClick={handleOnClickStepMore} />
+      <input
+        type="button"
+        value="fewer steps"
+        onClick={handleOnClickStepFewer}
+      />
+      <input type="button" value="Create Steps" onClick={handleOnClickCreate} />
+      <p>{countStep}</p>
+    </div>
+  );
+  ////////
+  const handleOnclickResetStep = (event) => {
+    stepsRef.current = [];
+    setStepsRend(null);
+  };
+
+  const resetStepsOrOksteps = (
+    <div>
+      <input
+        type="button"
+        value="Reset Steps"
+        onClick={handleOnclickResetStep}
+      />
+    </div>
+  );
+
+  const veriStepsMessage = stepsRef.current[0]
+    ? resetStepsOrOksteps
+    : startSteps;
+
+  //////
+  //////
+
+  //////
+  const handleCluterStepsNumber = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    const ArraystepsNum = value.split(' ');
+    if (ArraystepsNum.length > 30)
+      alert(`Step ${name - 1}  can only have 30 words`);
+    stepsRef.current[name - 1]['step'] = value;
+  };
+
+  const handleCluterIngreNumber = (event) => {
+    const name = event.target.name;
+    const res = / /g;
+    const noSpaces = event.target.value.replace(res, ',');
+    const value = noSpaces.split(',');
+    if (value.length > 5)
+      return alert(`only 5 ingredients are allowed per step`);
+    stepsRef.current[name - 1]['ingredients'] = value;
+  };
+
+  const handleCluterEquiNumber = (event) => {
+    const name = event.target.name;
+    const res = / /g;
+    const noSpaces = event.target.value.replace(res, ',');
+    const value = noSpaces.split(',');
+    if (value.length > 5) return alert(`only 5 equipment are allowed per step`);
+    stepsRef.current[name - 1]['equipment'] = value;
+  };
+  const stepsCluter = (num) => {
+    let mySteps = [];
+    for (let i = 1; i < num + 1; i++) {
+      stepsRef.current.push({
+        step_number: i,
+        step: '',
+        ingredients: '',
+        equipment: '',
+      });
+      mySteps.push(
+        <div key={i}>
+          <label htmlFor={i}>{`Step ${i}`}</label>
+          <input type="text" name={i} onChange={handleCluterStepsNumber} />
+          <label htmlFor={i}>{`ingredients ${i}`}</label>
+          <input type="text" name={i} onChange={handleCluterIngreNumber} />
+          <label htmlFor={i}>{`Equipment ${i}`}</label>
+          <input type="text" name={i} onChange={handleCluterEquiNumber} />
+        </div>
+      );
+    }
+
+    return mySteps;
+  };
+
+  /////////////////////////////////////////////////////////////////////////
+  ///// submit
+
+  const handleonClickPrevioSubmit = () => {
+    const stepsObj = {
+      steps: stepsRef.current,
+    };
+    setForm({
+      ...form,
+      step_by_step: [...form.step_by_step, stepsObj],
+    });
+  };
+
+  const myPreviSubmit = () => {
+    const validate =
+      form.name && form.dish_summary && form.image && form.healthy_food_score;
+
+    return (
+      validate && (
+        <input
+          type="button"
+          value={'previSubmit'}
+          onClick={handleonClickPrevioSubmit}
+        />
+      )
+    );
+  };
+
+  const handleOnclickRegretful = () => {
+    setForm({
+      ...form,
+      step_by_step: [],
+    });
+  };
+
+  const withStep = (
+    <div>
+      <input type="submit" />
+      <p>Are you sure the recipe is how you want it?</p>
+      <input
+        type="button"
+        value="I want to edit something else"
+        onClick={handleOnclickRegretful}
+      />
+    </div>
+  );
+
+  const inputSubmit = form.step_by_step[0] ? withStep : myPreviSubmit();
+  //////////////////////////////////////////////////////////////////////////////
+  ////
+  const handleOnSubmit = (event) => {
+    stepsRef.current = [];
+    event.preventDefault();
+    formRef.current = true;
+    dispatch(createRecipe(form));
+  };
+
+  ////////
+  const formFinal = (
+    <div>
+      <form onSubmit={handleOnSubmit}>
+        {/* name */}
+        {nameDietInput}
+        {comprobacionsName}
+        {/* name */}
+        {/* dishSumary*/}
+        {dishSumary}
+        {messageHealthyVeri}
+        {/*dishSumary*/}
+        {/* dietsss */}
+        {dietRenderFi}
+        {dietResetFi}
+        {messageDeitVerication}
+        {/* dietssss */}
+        {/* healf */}
+        {healthyFoodScore}
+        {messageHeal}
+        {/* healf */}
+        {/*Img */}
+        {imgInput}
+        {messageImg}
+        {/* Img */}
+        {/* steps */}
+        {stepsRend}
+        {veriStepsMessage}
+        {messageSpeps}
+        {/* steps */}
+        {/* submit */}
+        {inputSubmit}
+        {/* submit */}
+      </form>
+    </div>
+  );
+
+  const renderFormRecipe = formRef.current ? (
+    <div>{`Your recipe ${form.name} was successfully uploaded!!`}</div>
+  ) : (
+    formFinal
+  );
+  ////////////////////////
+  return renderFormRecipe;
+}
