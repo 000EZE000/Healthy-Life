@@ -5,6 +5,7 @@ import ValidataName from './validate_Diet/input_validata_name';
 import ValidataInfo from './validate_Diet/input_validata_Info';
 import ValidataImage from './validate_Diet/input_validata_Img';
 import InputSubmit from './input_Submit';
+import { containerForm } from '../../style/create_Inicio/create_diet/form_diet.module.css';
 export default function FormDiet({
   setForm,
   form,
@@ -22,7 +23,7 @@ export default function FormDiet({
   };
 
   const myFrom = (
-    <div>
+    <div className={containerForm}>
       <form onSubmit={handleOnSubmitForm}>
         <InputName form={form} setForm={setForm} />
         {valiName[1]}

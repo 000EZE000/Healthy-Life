@@ -1,0 +1,63 @@
+.containerCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  margin: 1rem 1rem 1rem 1rem;
+}
+.textLink {
+  color: black;
+  text-decoration: none;
+
+  text-align: center;
+}
+.titleCard {
+  margin: 0%;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 1rem 0rem 1rem 0rem;
+  display: block;
+  background-color: bisque;
+  width: 18.75rem;
+  border-radius: 2rem 0rem 0rem 0rem;
+}
+
+.imageCard {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  display: flex;
+}
+.containerTextLink {
+  border: none;
+  padding: 1rem;
+  font-size: 1.3rem;
+  position: relative;
+  display: inline;
+  background-color: var(--color-base);
+  width: 100%;
+  text-align: center;
+  border-radius: 0rem 0rem 2rem 0rem;
+  border-bottom: 0.4rem solid var(--borde);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+/* animation */
+
+.containerTextLink {
+  transition: all 300ms ease;
+}
+
+.containerTextLink:active {
+  position: relative;
+  letter-spacing: 6px;
+  right: 1rem;
+}
+
+.containerTextLink:hover {
+  border: none;
+  border-top: 7px solid var(--borde);
+  padding-top: 1rem;
+}

@@ -1,0 +1,44 @@
+.containerAddBack {
+  bottom: 10px;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  background: linear-gradient(var(--degradado));
+  padding: 3px;
+  font-size: 1.6rem;
+  color: rgb(4, 4, 4);
+  border-radius: 0px 0px 80px 80px;
+  height: 150%;
+  backdrop-filter: blur(10px);
+  margin: 0%;
+  z-index: 10;
+}
+.linkBack {
+  /* margin-left: 3rem; */
+  position: relative;
+  padding: 1rem 2rem 0rem 3rem;
+  font-size: 2rem;
+  text-decoration: none;
+  color: rgb(59, 43, 19);
+  border-radius: 0rem 0rem 0rem 4rem;
+  top: 0.3rem;
+}
+.textCreateDiet {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-right: 3rem;
+  font-size: 2rem;
+  position: relative;
+  color: rgb(59, 43, 19);
+}
+
+.containerFatherDiet {
+  background-image: var(--background6);
+  background-size: cover;
+  background-attachment: fixed;
+  height: 120rem;
+}
+/* display: flex;
+flex-direction: row;
+background-color: rgb(21, 105, 179);
+justify-content: space-between;
+padding: 0rem 3rem 0rem 1rem; */

@@ -4,11 +4,12 @@ import {
   MODIFY_DIETS,
   DELETE_DIET,
   DIET_RECIPES_RELATIONS,
+  CLEAN_RELATION,
 } from '../actions/name_variables_Diet';
 
 const initialState = {
   diets: [],
-  relationsDietRecipe: {},
+  relationsDietRecipe: [],
   messageServer: '',
 };
 
@@ -26,6 +27,8 @@ const rootReducerDiet = (state = initialState, action) => {
       return { ...state, messageServer: payload };
     case DELETE_DIET:
       return { ...state, messageServer: payload };
+    case CLEAN_RELATION:
+      return { ...state, relationsDietRecipe: payload };
     default:
       return { ...state };
   }

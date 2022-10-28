@@ -1,31 +1,31 @@
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
-const dietRoutes = require("./routes/diet.js");
-const recipesRouter = require("./routes/recipes");
-const runDatabase = require('./routes/run_database')
-const myQuerie = require('./database_queries/all_queries')
-require("./db.js");
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const dietRoutes = require('./routes/diet.js');
+const recipesRouter = require('./routes/recipes');
+const runDatabase = require('./routes/run_database');
+// const myQuerie = require('./database_queries/all_queries')
+require('./db.js');
 const server = express();
-server.name = "API";
-server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
-server.use(bodyParser.json({ limit: "50mb" }));
+server.name = 'API';
+server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
-server.use(morgan("dev"));
+server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Credentials", "true");
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Credentials', 'true');
   res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
   );
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
 
-server.use("/diet", dietRoutes);
-server.use("/recipes", recipesRouter);
+server.use('/diet', dietRoutes);
+server.use('/recipes', recipesRouter);
 server.use('/', runDatabase);
 // Error catching endware.
 server.use((err, req, res, next) => {

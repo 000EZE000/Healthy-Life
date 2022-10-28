@@ -1,0 +1,60 @@
+.facherMessageDiet {
+  display: flex;
+  background-image: var(--background7);
+  background-size: cover;
+  background-attachment: fixed;
+  background-size: contain;
+  flex-direction: column;
+  justify-content: center;
+}
+.containerTitle {
+  bottom: 0.5rem;
+  position: relative;
+  background: linear-gradient(var(--degradado));
+  color: rgb(4, 4, 4);
+  border-radius: 0px 0px 80px 80px;
+  backdrop-filter: blur(20px);
+  text-align: center;
+  color: var(--color-title);
+  letter-spacing: 0.4rem;
+  font-size: 2rem;
+  text-shadow: 4px 4px #100d0d72;
+}
+
+.containerOpcion {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin: 0%;
+}
+.linkOfDiet {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  position: relative;
+  text-decoration: none;
+  font-size: 3rem;
+  border: none;
+  color: aliceblue;
+  margin: 5rem 0rem 20rem 0rem;
+  padding: 6rem 6rem 6rem 8rem;
+  border: none;
+  background-color: rgba(215, 218, 250, 0.309);
+  backdrop-filter: blur(20px);
+  border-bottom: 1rem solid var(--borde);
+  border-radius: 10rem 1rem 1rem 10rem;
+}
+.repeatInput {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  text-decoration: none;
+  font-size: 3rem;
+  border: none;
+  color: aliceblue;
+  margin: 5rem 1rem 20rem 1rem;
+  padding: 2rem 2rem 2rem 2rem;
+  border: none;
+  background-color: rgba(215, 218, 250, 0.309);
+  backdrop-filter: blur(20px);
+  border-bottom: 1rem solid var(--borde);
+  border-radius: 1rem 10rem 10rem 1rem;
+}

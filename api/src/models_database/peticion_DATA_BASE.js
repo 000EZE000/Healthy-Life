@@ -1,31 +1,32 @@
-const axios = require("axios");
-require("dotenv").config();
-const {API_KEY,ALL_RESULTS,URL} = process.env;
+const axios = require('axios');
+require('dotenv').config();
+const { API_KEY, ALL_RESULTS, URL } = process.env;
 const getBaseData = async (request = null) => {
+  console.log('peticion');
 
-const getAllApi = {
-  apiKey: API_KEY,
-  addRecipeInformation: true,
-  number: ALL_RESULTS,
-}
+  const getAllApi = {
+    apiKey: API_KEY,
+    addRecipeInformation: true,
+    number: ALL_RESULTS,
+  };
+  console.log('holasdasdsad');
+  const getNameApi = {
+    apiKey: API_KEY,
+    addRecipeInformation: true,
+    query: request,
+  };
 
-const getNameApi = {
-  apiKey: API_KEY,
-  addRecipeInformation: true,
-  query: request
-}
-
-  const params = request? getNameApi : getAllApi;
+  const params = request ? getNameApi : getAllApi;
 
   try {
     const baseDataBruta = await axios({
-    method: "get",
+      method: 'get',
       url: URL,
       params,
     });
     return baseDataBruta.data.results;
   } catch (error) {
-    console.log(`${error} 'error --- function -- getBasedata' ${__filename}`)
+    console.log(`${error} 'error --- function -- getBasedata' ${__filename}`);
   }
 };
 

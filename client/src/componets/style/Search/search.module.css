@@ -1,0 +1,89 @@
+.contentSearhInput {
+  bottom: 5rem;
+  display: flex;
+  position: relative;
+  background: linear-gradient(var(--degradado));
+  padding: 3px;
+  font-size: 1.6rem;
+  color: rgb(4, 4, 4);
+  border-radius: 0px 0px 80px 80px;
+  height: 150%;
+  backdrop-filter: blur(20px);
+}
+
+.contentSearhInput {
+  flex-direction: row-reverse;
+  justify-content: center;
+  padding: 15px;
+}
+.inputSearhSt {
+  font-size: 2rem;
+  background-color: var(--color-base);
+  padding: 8px;
+  border: none;
+  outline: none;
+  width: 1%;
+  border-radius: 0px 20px 20px 0px;
+  border-bottom: 4px solid var(--borde);
+}
+
+/* .inputSearhSt::-webkit-input-placeholder {
+  text-align: center;
+  line-height: 100px;
+  color: var(--color-texto-item);
+  font-size: 2rem;
+} */
+
+.imgSearch {
+  width: 4%;
+  background-color: var(--color-base);
+  border-radius: 20px 0px 0px 20px;
+  padding: 0.4rem 0rem 0.4rem 1rem;
+  border-bottom: 4px solid var(--borde);
+}
+.contenerSearchall {
+  background-color: rgba(17, 181, 181, 0);
+}
+
+.aux {
+  background-image: var(--background1);
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+}
+
+/* animation search */
+
+.contentSearhInput {
+  animation-name: searchInput;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes searchInput {
+  100% {
+    bottom: 0rem;
+  }
+}
+
+.inputSearhSt {
+  transition: all 600ms ease;
+}
+
+.titleNav {
+  transition: all 600ms ease;
+}
+.inputSearhSt:hover {
+  font-size: 2rem;
+  background-color: var(--color-base);
+  padding: 8px;
+  border: none;
+  outline: none;
+  width: 28rem;
+  border-radius: 0px 20px 20px 0px;
+  border-bottom: 4px solid var(--borde);
+}
+
+.inputSearhSt:active {
+  letter-spacing: 3px;
+}

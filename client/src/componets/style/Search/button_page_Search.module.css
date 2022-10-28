@@ -1,0 +1,107 @@
+.nextP {
+  border: none;
+  font-size: 1rem;
+  background-color: var(--color-base);
+  color: #ff0000;
+  padding: 1rem;
+  border-radius: 20px 40px 40px 20px;
+  border-right: 5px solid var(--borde);
+  cursor: pointer;
+}
+
+.lessP {
+  border: none;
+  font-size: 1rem;
+  background-color: var(--color-base);
+  color: rgb(51, 0, 255);
+  padding: 1rem;
+  border-radius: 40px 20px 20px 40px;
+  border-left: 5px solid var(--borde);
+  cursor: pointer;
+}
+
+.contentInputPa {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.statusP {
+  margin: 10px;
+  border: none;
+  font-size: 1rem;
+  background-color: var(--color-base);
+  color: rgb(2, 2, 2);
+  padding: 1rem;
+  border-radius: 20px 20px 20px 20px;
+  cursor: pointer;
+  border-left: 5px solid var(--borde);
+  border-right: 5px solid var(--borde);
+}
+
+.contentInputPaBotton {
+  padding: 2rem;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 200rem;
+}
+
+/* animationes */
+
+.nextP {
+  transition: all 800ms ease;
+}
+
+.lessP {
+  transition: all 800ms ease;
+}
+
+.nextP:active {
+  position: relative;
+  letter-spacing: 6px;
+
+  left: 1rem;
+}
+
+.lessP:active {
+  position: relative;
+  letter-spacing: 6px;
+
+  right: 1rem;
+}
+
+.statusP {
+  transition: all 200ms ease;
+}
+
+.statusP:focus {
+  border: none;
+  background-color: black;
+  color: aliceblue;
+  padding: 1rem;
+  border-right: 5px solid var(--borde);
+}
+
+/* 
+.inputSearhSt {
+  transition: all 600ms ease;
+}
+
+.titleNav {
+  transition: all 600ms ease;
+}
+.inputSearhSt:hover {
+  font-size: 2rem;
+  background-color: var(--color-base);
+  padding: 8px;
+  border: none;
+  outline: none;
+  width: 28rem;
+  border-radius: 0px 20px 20px 0px;
+  border-bottom: 4px solid var(--borde);
+}
+
+.inputSearhSt:active {
+  letter-spacing: 3px;
+} */

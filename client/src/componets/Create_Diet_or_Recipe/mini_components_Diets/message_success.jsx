@@ -1,21 +1,33 @@
 import { Link } from 'react-router-dom';
-
+import {
+  facherMessageDiet,
+  containerTitle,
+  titleSucess,
+  containerOpcion,
+  linkOfDiet,
+  repeatInput,
+} from '../../style/create_Inicio/sucessMessage.module.css';
 export default function Success({ setForm, setMySwitch }) {
   const handleOnClickRepeat = () => {
     setMySwitch(true);
   };
 
   const decision = (
-    <div>
-      <h2>Your diet is up</h2>
-      <button>
-        <Link to="/diets">See my diet</Link>
-      </button>
-      <input
-        type="button"
-        value="Create yet another recipe"
-        onClick={handleOnClickRepeat}
-      />
+    <div className={facherMessageDiet}>
+      <div className={containerTitle}>
+        <h2 className={titleSucess}>Your diet is up</h2>
+      </div>
+      <div className={containerOpcion}>
+        <Link className={linkOfDiet} to="/diets">
+          See my diet
+        </Link>
+        <input
+          className={repeatInput}
+          type="button"
+          value="Create yet another Diet"
+          onClick={handleOnClickRepeat}
+        />
+      </div>
     </div>
   );
   return decision;

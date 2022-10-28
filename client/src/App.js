@@ -2,6 +2,7 @@ import { Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import Header from './componets/Header/Header';
+import Home from './componets/Home/Home';
 import Search from './componets/Search/Search';
 import Recipe from './componets/Recipe/Recipe_Container';
 import Diet from './componets/Diet/diet_container';
@@ -23,8 +24,9 @@ export default function App() {
   const myApp = (
     <div className={styles.black}>
       <div></div>
-      <Route exact path="*" component={Header} />
-      <Route exact path="/home" component={Search} />
+      <Route path="/" component={Header} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/search" component={Search} />
       <Route exact path="/recipes" component={Recipe} />
       <Route exact path="/relationDiet" component={RelationsDiet} />
       <Route exact path="/diets" component={Diet} />

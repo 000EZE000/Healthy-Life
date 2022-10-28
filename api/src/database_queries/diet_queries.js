@@ -1,10 +1,8 @@
-const {Diet} = require('../db');
+const { Diet } = require('../db');
 
 const querieDietAll = async () => {
-    const res = await Diet.findAll({raw: true})
-   return res
-}
+  const res = await Diet.findAll({ raw: true });
+  return res;
+};
 
-
-
-module.exports =querieDietAll
+module.exports = querieDietAll;

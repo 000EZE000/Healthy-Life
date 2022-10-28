@@ -1,56 +1,105 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import PaginationRecipe from './pagination_Recipe.jsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { allRecipes } from '../../redux/actions/recipe_actions';
-import { orderAlphabetically } from '../../redux/actions/recipe_actions';
-import { orderHealthyPoints } from '../../redux/actions/recipe_actions';
+
+import {
+  containerButtonAll,
+  buttonNotDisable,
+  containerButton,
+  containerRecipeAall,
+  containerDietInput,
+  filterDiet,
+  backgroundAuxRec,
+} from '../style/Recipe_list/recipe_Opcion.module.css';
+import {
+  dietRecipeRelations,
+  clearRelation,
+} from '../../redux/actions/diet_actions.js';
+import TypeDietSear from './type_diet.jsx';
+import alphaOrder from './order/card_recipe/alpha.js';
+import scoreOrder from './order/score.js';
 export default function Recipe() {
-  const [order, setOrder] = useState('Disorderly');
+  let repicesReducer = useSelector(
+    (e) => e.dietReduce.relationsDietRecipe.data?.[0]?.recipes
+  );
+  const [myOrder, setMyOrder] = useState([]);
   const [page, setPage] = useState([]);
-  const [pageLocation, setPageLocation] = useState(0);
-  const myRefFunction = useRef(allRecipes);
-  const repicesReducer = useSelector((e) => e.recipesReduce.recipes);
-
+  let [pageLocation, setPageLocation] = useState(0);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(myRefFunction.current());
-  }, [order, dispatch]);
+  const myDiet = TypeDietSear();
+  let arrayPage = [];
 
-  const handleOnclickOrder = (event) => {
-    const name = event.target.name;
-    const dicctionary = {
-      Alpha: orderAlphabetically,
-      Healthy: orderHealthyPoints,
-      Disorderly: allRecipes,
+  useEffect(() => {
+    return () => {
+      dispatch(clearRelation());
     };
-    myRefFunction.current = dicctionary[name];
-    setOrder(name);
+  }, [dispatch]);
+  const handleOnclickOrderAndDiet = (event) => {
+    const nameId = event.target.name;
+    const dicctionary = {
+      Alpha: alphaOrder,
+      Healthy: scoreOrder,
+    };
+
+    if (nameId !== 'Alpha' && nameId !== 'Healthy') {
+      dispatch(dietRecipeRelations(nameId));
+      setPageLocation(0);
+      setMyOrder([]);
+      return;
+    }
+    const filterDiet = dicctionary[nameId](repicesReducer);
+    setMyOrder(filterDiet);
+    return;
   };
 
-  const orderNameArray = ['Alpha', 'Healthy', 'Disorderly'];
-  const buttonArray = orderNameArray.map((e, index) => (
-    <div key={index}>
-      {order === e ? (
-        <button disabled>{e}</button>
-      ) : (
-        <button name={e} onClick={handleOnclickOrder}>
-          {e}
-        </button>
-      )}
+  const myOptionDiets = myDiet ? (
+    <div className={containerDietInput}>
+      {myDiet?.map((e, index) => (
+        <input
+          key={index}
+          type="button"
+          value={e[1]}
+          name={e[0]}
+          onClick={handleOnclickOrderAndDiet}
+          className={filterDiet}
+        />
+      ))}
     </div>
-  ));
+  ) : null;
+  const orderNameArray = ['Alpha', 'Healthy'];
+  const buttonArray = repicesReducer
+    ? orderNameArray.map((e, index) => (
+        <div className={containerButton} key={index}>
+          <button
+            name={e}
+            className={buttonNotDisable}
+            onClick={handleOnclickOrderAndDiet}
+          >
+            {e}
+          </button>
+        </div>
+      ))
+    : null;
 
-  return (
-    <div>
-      {buttonArray}
+  const myCarts = (
+    <div className={containerRecipeAall}>
+      <div className={containerButtonAll}>{buttonArray}</div>
       <PaginationRecipe
-        content={repicesReducer}
+        content={myOrder[0] ? myOrder : repicesReducer}
         setPage={setPage}
-        order={order}
         pageLocation={pageLocation}
         setPageLocation={setPageLocation}
         page={page}
+        arrayPage={arrayPage}
       />
+    </div>
+  );
+
+  return (
+    <div>
+      <div>{myOptionDiets}</div>
+      {myCarts}
+      <div className={backgroundAuxRec}></div>
     </div>
   );
 }

@@ -1,0 +1,47 @@
+.bottonLink {
+  position: relative;
+  margin: 0rem 0rem 10rem 0rem;
+  border: none;
+  border-radius: 10rem 0rem 10rem 0rem;
+  background-color: rgba(215, 218, 250, 0.309);
+  backdrop-filter: blur(20px);
+  border-bottom: 1rem solid var(--borde);
+}
+.textLink {
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-size: 2.4rem;
+  text-shadow: 4px 4px #100d0d72;
+  padding: 14rem 5rem 14rem 5rem;
+}
+.containerFather {
+  display: flex;
+  margin: 0%;
+  background-image: var(--background7);
+  background-size: cover;
+  background-attachment: fixed;
+  background-size: contain;
+  flex-direction: column;
+  justify-content: center;
+}
+.cotainerBotton {
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  margin: 0%;
+}
+.titileCreate {
+  bottom: 1.9rem;
+  position: relative;
+  background: linear-gradient(var(--degradado));
+  color: rgb(4, 4, 4);
+  border-radius: 0px 0px 80px 80px;
+  backdrop-filter: blur(20px);
+  padding: 2rem 0rem 2rem 0rem;
+  text-align: center;
+  color: var(--color-title);
+  letter-spacing: 0.4rem;
+  font-size: 2rem;
+  text-shadow: 4px 4px #100d0d72;
+}

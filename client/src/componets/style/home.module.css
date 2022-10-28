@@ -1,0 +1,94 @@
+.mainHo {
+  display: flex;
+  position: relative;
+  padding: 0rem 2rem 3rem 2rem;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  bottom: 0rem;
+  border: 6px;
+}
+.sectionHo {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 50px 50px 50px 50px;
+  background-color: rgba(253, 253, 253, 0.5);
+  margin: 4px;
+  width: 40%;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+
+.articuHo {
+  display: flex;
+  font-size: 1.3rem;
+  position: relative;
+  border-radius: 1rem;
+  padding: 10px;
+  align-content: center;
+  text-shadow: var(--shadow-text);
+}
+.titleHo {
+  bottom: 7rem;
+  background: linear-gradient(var(--degradado));
+  padding: 3px;
+  font-size: 1.6rem;
+  display: block;
+  position: relative;
+  color: rgb(4, 4, 4);
+  text-align: center;
+  border-radius: 0px 0px 80px 80px;
+  backdrop-filter: blur(20px);
+}
+.headerHo {
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: var(--color-base);
+  box-shadow: var(--shadow);
+  border-radius: 20px 0px 20px 0px;
+}
+
+.contentBack {
+  background-color: #222d2d;
+  background-image: var(--background4);
+  background-attachment: fixed;
+  background-size: contain;
+  animation-name: backgroundHome;
+  animation-duration: 1000s;
+  animation-iteration-count: 3;
+}
+
+.h3Ho {
+  color: var(--color-title);
+  text-shadow: var(--shadow-text);
+  font-style: oblique;
+}
+
+/* ////////////////////////////////////////////// */
+/* animation */
+/* ////////////////////////////////////////////// */
+
+/* animationes  */
+
+/* Link botones de header */
+
+/*  */
+
+/* Link botones de Backbrund*/
+
+/*  */
+/*top h3Ho  */
+.titleHo {
+  animation-name: topH3Ho;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes topH3Ho {
+  100% {
+    bottom: 1rem;
+  }
+}
+
+/*  */

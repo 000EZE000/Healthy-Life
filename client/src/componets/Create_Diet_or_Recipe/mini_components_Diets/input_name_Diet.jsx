@@ -1,3 +1,9 @@
+import {
+  containerInputDiet,
+  labelInput,
+  inputDiet,
+} from '../../style/create_Inicio/create_diet/form_diet.module.css';
+
 export default function InputName({ form, setForm }) {
   const { name } = form;
   const handleOnchange = (event) => {
@@ -9,16 +15,19 @@ export default function InputName({ form, setForm }) {
   };
 
   const inputName = (
-    <>
-      <label htmlFor={name}>Name</label>
+    <div className={containerInputDiet}>
+      <label className={labelInput} htmlFor={name}>
+        Name of Diet
+      </label>
       <input
+        className={inputDiet}
         type="text"
         value={name}
         name={name}
         onChange={handleOnchange}
         autoComplete="off"
       />
-    </>
+    </div>
   );
 
   return inputName;

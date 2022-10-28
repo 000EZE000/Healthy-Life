@@ -1,0 +1,47 @@
+.nextP {
+  border: none;
+  font-size: 1rem;
+  background-color: var(--color-base);
+  color: #ff0000;
+  padding: 1rem;
+  border-radius: 20px 40px 40px 20px;
+  border-right: 5px solid var(--borde);
+  cursor: pointer;
+}
+
+.lessP {
+  border: none;
+  font-size: 1rem;
+  background-color: var(--color-base);
+  color: rgb(51, 0, 255);
+  padding: 1rem;
+  border-radius: 40px 20px 20px 40px;
+  border-left: 5px solid var(--borde);
+  cursor: pointer;
+}
+
+.statusP {
+  margin: 10px;
+  border: none;
+  font-size: 1rem;
+  background-color: var(--color-base);
+  color: rgb(2, 2, 2);
+  padding: 1rem;
+  border-radius: 20px 20px 20px 20px;
+  cursor: pointer;
+  border-left: 5px solid var(--borde);
+  border-right: 5px solid var(--borde);
+}
+.contentInputPa {
+  margin: 1rem;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+.contentInputPaBotton {
+  padding: 2rem;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 200rem;
+}

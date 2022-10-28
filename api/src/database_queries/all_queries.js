@@ -2,6 +2,8 @@ const querieDietAll = require('./diet_queries');
 const querieRecipAll = require('./recipe_queries');
 const querieSearchAll = require('./search_queries');
 
+const { Diet } = require('../db');
+
 const myQuerie = async (recipe) => {
   const message = recipe;
   const myDictionary = {
@@ -14,9 +16,7 @@ const myQuerie = async (recipe) => {
       ),
   };
   !myDictionary[recipe] ? (recipe = 'error') : null;
-
   const result = await myDictionary[recipe]();
-
   return Array.isArray(result)
     ? result.forEach((e) => {
         console.log(e.name);
@@ -25,10 +25,6 @@ const myQuerie = async (recipe) => {
 };
 
 //myQuerie('diet');
-
-const myId = async (id) => {};
-
-//myQuerie('recipe','tomato')
 
 module.exports = myQuerie;
 

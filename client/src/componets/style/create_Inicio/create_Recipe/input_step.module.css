@@ -1,0 +1,138 @@
+.containerInputRecipe {
+  position: relative;
+  margin: 3rem;
+  border-radius: 4rem 0rem 0rem 0rem;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  border-top: 0.5rem solid var(--borde);
+  background-color: rgba(137, 43, 226, 0.291);
+  backdrop-filter: blur(20px);
+  width: 34rem;
+}
+
+.labelInput {
+  color: rgba(255, 255, 255, 0.963);
+  font-size: 3rem;
+  margin: 1rem;
+}
+
+.containerBackgroundBot {
+  display: flex;
+  justify-content: center;
+}
+.containerBottonLessAndAdd {
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  position: relative;
+
+  border-radius: 50rem 50rem 50rem 50rem;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 255, 0.671) 30%,
+    rgba(216, 14, 14, 0.661) 70%
+  );
+}
+
+.bottonLessStep {
+  border: none;
+  margin: 0rem 0rem 0rem 1rem;
+  font-size: 2rem;
+  color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.768);
+  padding: 1rem;
+  width: 5rem;
+  border-radius: 2rem 2rem 2rem 2rem;
+  box-shadow: -4px 4px rgba(0, 0, 0, 0.411);
+  cursor: pointer;
+}
+.bottonAddStep {
+  border: none;
+  margin: 0rem 0rem 0rem 0rem;
+  color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.768);
+  font-size: 2rem;
+  padding: 1rem;
+  width: 5rem;
+  border-radius: 2rem 2rem 2rem 2rem;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.411);
+  cursor: pointer;
+}
+
+.subLabelInput {
+  color: rgb(196, 249, 255);
+  position: relative;
+  font-size: 2rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background-color: rgba(0, 0, 0, 0.249);
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
+}
+.containerInputStInEq {
+  width: 30rem;
+  background-color: rgba(18, 138, 124, 0.756);
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 40rem 0rem 40rem 0rem;
+  box-shadow: 6px 6px black;
+}
+.containerInputInEq {
+  display: inline-flex;
+  flex-direction: row;
+  margin: 0%;
+  justify-content: space-around;
+}
+.textareaStep {
+  font-size: 1.4rem;
+  padding: 2rem;
+  border: none;
+  margin: 00.5rem;
+  resize: none;
+  outline: none;
+  border-radius: 2rem 0rem 0rem 2rem;
+  background-color: rgba(79, 176, 229, 0.795);
+  box-shadow: 0px 4px black;
+}
+.containerInputInOrEq {
+  margin: 1rem;
+  position: relative;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.textareaIng {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  border: none;
+  position: relative;
+  width: 10rem;
+  resize: none;
+  outline: none;
+  padding: 0.7rem 0.7rem 3rem 0.7rem;
+  border-radius: 0.7rem 0.7rem 0.7rem 0.7rem;
+  background-color: rgba(69, 66, 8, 0.811);
+  color: aliceblue;
+  box-shadow: 5px 2px black;
+}
+.textareaEqui {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  border: none;
+  position: relative;
+  width: 10rem;
+  resize: none;
+  outline: none;
+  padding: 0.7rem 0.7rem 3rem 0.7rem;
+  border-radius: 0.7rem 0.7rem 0.7rem 0.7rem;
+  background-color: rgb(148, 128, 76);
+  color: aliceblue;
+  box-shadow: -5px 2px black;
+}

@@ -1,6 +1,10 @@
+import {
+  errorRecipeForm,
+  successInputRecipe,
+} from '../../../style/create_Inicio/create_Recipe/validate_recipe.module.css';
+
 const validatelength = (string, numMin, numMax) => {
   const lengthString = string.split(' ');
-  console.log(lengthString, 'ho');
   const lengthOk = lengthString.length > numMin && lengthString.length < numMax;
   return lengthOk;
 };
@@ -19,9 +23,9 @@ export default function ValidateStep(refStep) {
   const [firtsElem, secondElem] = copySegu;
 
   const messageUndefine = (
-    <p>
+    <p className={successInputRecipe}>
       {
-        'This is where you explain how to make the delicious recipe, but it is notmandatory'
+        '✔This is where you explain how to make the delicious recipe, but it is notmandatory✔'
       }
     </p>
   );
@@ -37,30 +41,39 @@ export default function ValidateStep(refStep) {
     ? false
     : true;
   const messageIdefinite = (
-    <p>{`Some of the data in step ${step_number} missing complete`}</p>
+    <p
+      className={errorRecipeForm}
+    >{`⊗Some of the data in step ${step_number} missing complete⊗`}</p>
   );
   if (!validateIndefinite) return [false, messageIdefinite];
   const validateSpace = step[0] === ' ';
   const messageSpaceErro = (
-    <p>{`there can be no empty spaces at the beginning step ${step_number}`}</p>
+    <p
+      className={errorRecipeForm}
+    >{`⊗There can be no empty spaces at the beginning step ${step_number}⊗`}</p>
   );
 
   if (validateSpace) return [false, messageSpaceErro];
   const lengthOkStep = validatelength(step, 2, 35);
   const messageLengError = (
-    <p>{`For a worthy description we ask you to put between 3 to 35 words in the ${step_number} step`}</p>
+    <p
+      className={errorRecipeForm}
+    >{`⊗For a worthy description we ask you to put between 3 to 35 words in the ${step_number} step⊗`}</p>
   );
   if (!lengthOkStep) return [false, messageLengError];
-  console.log('si');
   const lengthOkIngre = validateArry(ingredients, 0, 10);
   const messageLengErrorIng = (
-    <p>{`the ingredients have to have at least between 1 to 15 elements, check in step ${step_number}`}</p>
+    <p
+      className={errorRecipeForm}
+    >{`⊗The ingredients have to have at least between 1 to 15 elements, check in step ${step_number}⊗`}</p>
   );
   if (!lengthOkIngre) return [false, messageLengErrorIng];
 
   const lengthOkEqui = validateArry(equipment, 0, 10);
   const messageLengErrorEqui = (
-    <p>{`the Equipment have to have at least between 1 to 10 elements, check in step ${step_number}`}</p>
+    <p
+      className={errorRecipeForm}
+    >{`⊗The Equipment have to have at least between 1 to 10 elements, check in step ${step_number}⊗`}</p>
   );
   if (!lengthOkEqui) return [false, messageLengErrorEqui];
 
@@ -68,7 +81,7 @@ export default function ValidateStep(refStep) {
     copySegu.shift();
     return ValidateStep(copySegu);
   }
-  console.log(refStep);
-  const messageSuccess = <p>{`the steps are ok`}</p>;
+
+  const messageSuccess = <p className={successInputRecipe}>{`✔The steps✔`}</p>;
   return [true, messageSuccess];
 }

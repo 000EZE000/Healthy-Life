@@ -13,6 +13,7 @@ import ValidataImageRecipe from './validate_Recipe/input_validata_Img';
 import InputSubmit from './input_Submit_Recipe';
 import { useEffect } from 'react';
 import { allDiet } from '../../../redux/actions/diet_actions';
+import { containerForm } from '../../style/create_Inicio/create_Recipe/form_recipe.module.css';
 export default function FormRecipe({
   setForm,
   dispatch,
@@ -47,8 +48,7 @@ export default function FormRecipe({
     setMySwitch(false);
   };
   const myForm = (
-    <div>
-      <h2>Recipe</h2>
+    <div className={containerForm}>
       <form onSubmit={handleOnSubmitForm}>
         <InputName setForm={setForm} form={form} />
         {validateName[1]}

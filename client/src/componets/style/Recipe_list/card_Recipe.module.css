@@ -1,0 +1,77 @@
+.containerCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+.textLink {
+  color: black;
+  text-decoration: none;
+  text-align: center;
+}
+
+.titleCard {
+  margin: 0%;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 1rem 0rem 1rem 0rem;
+  display: block;
+  background-color: bisque;
+  width: 18.75rem;
+  border-radius: 2rem 0rem 0rem 0rem;
+}
+
+.imageCard {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  display: flex;
+}
+
+.containerTextLink {
+  border: none;
+  padding: 1rem;
+  font-size: 1.3rem;
+  position: relative;
+  display: inline;
+  background-color: var(--color-base);
+  width: 18.75rem;
+  text-align: center;
+  border-radius: 0rem 0rem 2rem 0rem;
+  border-bottom: 0.4rem solid var(--borde);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.dietOrde {
+  display: inline-flex;
+  position: relative;
+  flex-wrap: wrap-reverse;
+  padding-left: 3rem;
+  width: 15.75rem;
+  justify-content: space-around;
+  background-color: rgba(1, 1, 1, 0.6);
+  border-bottom: 0.4em solid rgb(3, 3, 3);
+  border-top: 0.4em solid rgba(3, 3, 3, 0.535);
+}
+
+.dietCard {
+  right: 2rem;
+  position: relative;
+  font-size: 1.5rem;
+  padding: 3px 3px 3px 3px;
+  margin: 3px 3px 3px 3px;
+  color: aliceblue;
+  border-radius: 3px 3px 3px 3px;
+}
+
+.healthyCard {
+  padding: 3px 3px 3px 3px;
+  background-color: var(--color-base);
+  font-size: 1.4rem;
+  text-align: center;
+  margin: 0;
+}

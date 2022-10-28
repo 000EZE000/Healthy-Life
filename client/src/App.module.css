@@ -1,8 +1,31 @@
+:root {
+  --background1: url(https://img.freepik.com/fotos-premium/comida-local-francesa-navarin-d-agneau-cordero-o-cordero-olla-coccion-lenta-plato-blanco_42124-1747.jpg?w=2000);
+  --background2: url(https://thumbs.dreamstime.com/b/vista-superior-delicioso-plato-blanco-ensalada-alta-calidad-y-resoluci%C3%B3n-hermosa-foto-concepto-213550349.jpg);
+  --background3: url(https://c8.alamy.com/compes/2j0npp3/vista-superior-platos-de-carne-de-arroz-alta-calidad-y-resolucion-hermoso-concepto-fotografico-2j0npp3.jpg);
+  --background4: url(https://thumbs.dreamstime.com/b/dos-platos-de-carne-la-parrilla-y-ensalada-verduras-frescas-en-mesa-cena-el-restaurante-almuerzo-servido-vista-superior-tumbo-194030920.jpg);
+  --background5: url(https://p4.wallpaperbetter.com/wallpaper/27/916/943/food-seafood-crustacean-fish-wallpaper-preview.jpg);
+  --background6: url(https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/08/13202930/Gastronomia-del-mundo-12.jpg);
+  --background7: url(http://i.mlcdn.com.br/portaldalu/fotosconteudo/43344_01.jpg);
+  --background8: url(https://img.freepik.com/fotos-premium/conjunto-tres-platos-asiaticos-platos-negros-sobre-mesa-madera-decorada-limon-chile-harina-apetitoso-bao-verduras-carnes_201606-1.jpg?w=2000);
+}
+
+/* .black {
+  background-image: var(--background1);
+  background-size: contain;
+  background-attachment: fixed;
+  height: 100vh;
+  z-index: 100;
+} */
+/* position */
 .black {
-  display: block;
-  background-color: gray;
-  padding-bottom: 1000px;
-  padding-left: 20px;
-  margin: -10px -10px -10px -10px;
-  border-radius: 20px;
+  margin-top: -100px;
+  padding-top: 70px;
+  margin-left: -50px;
+  padding-left: 40px;
+  position: relative;
+  display: flex;
+}
+
+.black {
+  flex-direction: column;
 }

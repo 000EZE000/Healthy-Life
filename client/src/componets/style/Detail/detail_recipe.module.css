@@ -1,0 +1,77 @@
+.detailFather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+  backdrop-filter: blur(10px);
+}
+
+.fatherFilter {
+  background-image: var(--background6);
+  background-attachment: fixed;
+  background-size: cover;
+}
+.childHealthy {
+  bottom: 1rem;
+  text-align: center;
+  position: relative;
+  font-size: 3.3rem;
+  display: block;
+  font-stretch: expanded;
+  color: black;
+  background-color: var(--borde);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border-radius: 0rem 0rem 50rem 50rem;
+}
+
+.fatherTitle {
+  background: linear-gradient(var(--degradado));
+  display: flex;
+  position: relative;
+  color: rgb(4, 4, 4);
+  border-radius: 0px 0px 80px 80px;
+  backdrop-filter: blur(20px);
+  justify-content: center;
+}
+
+.childTitle {
+  font-size: 2.6rem;
+}
+
+.childDish {
+  margin: 0%;
+  padding: 1rem 2rem 2rem 2rem;
+  font-size: 2rem;
+  text-align: justify;
+  text-decoration: none;
+}
+.childImg {
+  padding: 0rem 2rem 2rem 0rem;
+  bottom: 3rem;
+  width: 30rem;
+  height: 30rem;
+  float: left;
+  border-radius: 3rem 3rem 3rem 3rem;
+}
+.childDishAddImg {
+  position: relative;
+  background-color: rgba(233, 249, 249, 0.715);
+  border-bottom: 0.8rem solid var(--borde);
+  top: 3rem;
+}
+.titileNoFound {
+  background-color: rgba(0, 0, 0, 0.566);
+  font-size: 4rem;
+  color: white;
+  padding: 2rem;
+  border-radius: 0rem 0rem 3rem 3rem;
+  border-bottom: 4px solid cadetblue;
+}
+.titileStepe {
+  background-color: rgba(0, 0, 0, 0.566);
+  font-size: 4rem;
+  color: white;
+  padding: 2rem;
+  border-radius: 3rem 3rem 0rem 0rem;
+  border-top: 4px solid cadetblue;
+}

@@ -1,30 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  nav,
+  header,
+  ulContent,
+  texLink,
+  titleNav,
+  titleNavTex,
+  navFixed,
+} from '../style/header.module.css';
 
 function Header() {
   return (
-    <header>
-      {/* <img
-        src="https://img2.freepng.es/20180515/xkq/kisspng-recipe-kerala-computer-icons-chef-cookbook-5afa68711f8a82.8523811315263601771292.jpgs"
-        alt="icono"
-      /> */}
-      <nav>
-        <Link to="/home">
-          <h3>Healthy Life</h3>
-        </Link>
-        <ul>
-          <li>
-            <Link to="/diets">Diet</Link>
-          </li>
-          <li>
-            <Link to="/recipes">Recipes</Link>
-          </li>
-          <li>
-            <Link to="/create">Create</Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <div className={navFixed}>
+      <header className={header}>
+        <nav className={nav}>
+          <Link className={titleNav} to="/">
+            <h3 className={titleNavTex}>Healthy Life</h3>
+          </Link>
+          <ul className={ulContent}>
+            <Link className={texLink} to="/diets">
+              Diet
+            </Link>
+
+            <Link className={texLink} to="/search">
+              Search
+            </Link>
+
+            <Link className={texLink} to="/recipes">
+              Recipes
+            </Link>
+
+            <Link className={texLink} to="/create">
+              Create
+            </Link>
+          </ul>
+        </nav>
+      </header>
+    </div>
   );
 }
 

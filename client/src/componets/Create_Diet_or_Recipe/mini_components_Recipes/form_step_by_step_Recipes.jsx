@@ -5,11 +5,20 @@ import {
   generatorStep,
   setInf,
 } from './function_Hard/function_Recipe_Step';
+import {
+  containerBottonLessAndAdd,
+  containerStep,
+  labelInput,
+  containerInputRecipe,
+  bottonLessStep,
+  bottonAddStep,
+  containerBackgroundBot,
+} from '../../style/create_Inicio/create_Recipe/input_step.module.css';
 export default function InputStep({ setForm, form, refStep }) {
   const inputRef = useRef([]);
   let [numStep, setNumStep] = useState(1);
 
-  const newArray = [];
+  const bottonAddAndLess = [];
   const handleCluterStepsNumber = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -47,24 +56,48 @@ export default function InputStep({ setForm, form, refStep }) {
 
     setNumStep(numStep + 1);
   };
-  const handleOnclickNumLess = () => {
-    if (numStep === 0) return;
+  const handleOnclickNumLess = async () => {
+    if (numStep === 1) {
+      await setForm({
+        ...form,
+        step_by_step: [],
+      });
+      inputRef.current.pop();
+      refStep.current.pop();
+      setNumStep(--numStep);
+      return null;
+    }
     inputRef.current.pop();
     refStep.current.pop();
     setNumStep(--numStep);
   };
-  newArray.push(
-    <div key={numStep}>
-      <input key={2} type="button" onClick={handleOnclickNumPLus} value="+" />
-      <input key={3} type="button" onClick={handleOnclickNumLess} value="-" />
+
+  bottonAddAndLess.push(
+    <div key={56} className={containerBackgroundBot}>
+      <div className={containerBottonLessAndAdd} key={numStep}>
+        <input
+          className={bottonAddStep}
+          key={2}
+          type="button"
+          onClick={handleOnclickNumPLus}
+          value="+"
+        />
+        <input
+          className={bottonLessStep}
+          key={3}
+          type="button"
+          onClick={handleOnclickNumLess}
+          value="--"
+        />
+      </div>
     </div>
   );
 
   const parckInput = (
-    <div>
-      <h3>Steps</h3>
-      <div>{inputRef.current}</div>
-      {newArray}
+    <div className={containerInputRecipe}>
+      <label className={labelInput}>Steps</label>
+      <div className={containerStep}>{inputRef.current}</div>
+      {bottonAddAndLess}
     </div>
   );
 

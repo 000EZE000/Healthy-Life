@@ -1,3 +1,8 @@
+import {
+  containerInputRecipe,
+  labelInput,
+  inputRecipe,
+} from '../../style/create_Inicio/create_Recipe/form_recipe.module.css';
 export default function InputHealthy({ form, setForm }) {
   const { healthy_food_score } = form;
 
@@ -10,16 +15,19 @@ export default function InputHealthy({ form, setForm }) {
   };
 
   const inputHelthy = (
-    <>
-      <label htmlFor={healthy_food_score}>healthy food score</label>
+    <div className={containerInputRecipe}>
+      <label className={labelInput} htmlFor={healthy_food_score}>
+        Healthy Food Score
+      </label>
       <input
+        className={inputRecipe}
         type="text"
         value={healthy_food_score}
         name={healthy_food_score}
         onChange={handleOnchange}
         autoComplete="off"
       />
-    </>
+    </div>
   );
 
   return inputHelthy;

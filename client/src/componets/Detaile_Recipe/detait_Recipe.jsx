@@ -3,7 +3,20 @@ import React, { useEffect } from 'react';
 import { detailsId } from '../../redux/actions/recipe_actions';
 import CardSteps from './Steps_details_Recipe';
 import { Markup } from 'interweave';
+import {
+  detailFather,
+  childTitle,
+  childDish,
+  childDishAddImg,
+  childImg,
+  childHealthy,
+  fatherTitle,
+  fatherFilter,
+  titileNoFound,
+  titileStepe,
+} from '../style/Detail/detail_recipe.module.css';
 
+import { fatherStep } from '../style/Detail/detail_step.module.css';
 export default function RecipeDetails({ match }) {
   const { id } = match.params;
   const dispatch = useDispatch();
@@ -26,7 +39,9 @@ export default function RecipeDetails({ match }) {
     const { name, dish_summary, healthy_food_score, image, step_by_step } =
       responseServer?.data;
 
-    const messagewithoutStep = <h3>This recipe does not have step by step</h3>;
+    const messagewithoutStep = (
+      <h3 className={titileNoFound}>This recipe does not have step by step</h3>
+    );
     const stepsDetails = step_by_step[0] ? step_by_step[0]['steps'] : false;
 
     const renderStesp = stepsDetails
@@ -44,15 +59,28 @@ export default function RecipeDetails({ match }) {
       : messagewithoutStep;
 
     const myDetailsId = (
-      <div>
-        <h2>{name}</h2>
-        <h3>healthy_food_score: {healthy_food_score}</h3>
-        <div>
-          <Markup content={dish_summary} />;
-          <img src={image} alt={name} />
+      <>
+        <div className={fatherFilter}>
+          <div className={detailFather}>
+            <div className={fatherTitle}>
+              <h2 className={childTitle}>{name}</h2>
+            </div>
+            <div className={childDishAddImg}>
+              <img className={childImg} src={image} alt={name} />
+              <p className={childDish}>
+                <Markup content={dish_summary} />;
+              </p>
+            </div>
+            <h3 className={childHealthy}>
+              Healthy {'>>>'} {healthy_food_score} {'<<<'} Healthy
+            </h3>
+            <h3 className={titileStepe}>
+              here it will be explained how to make the recipe
+            </h3>
+            <div className={fatherStep}>{renderStesp}</div>
+          </div>
         </div>
-        <div>{renderStesp}</div>
-      </div>
+      </>
     );
 
     return myDetailsId;

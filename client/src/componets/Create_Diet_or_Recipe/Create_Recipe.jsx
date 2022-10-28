@@ -1,10 +1,15 @@
 import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-//import { createRecipe } from '../../redux/actions/recipe_actions';
 import FormRecipe from './mini_components_Recipes/form_Recipe';
 import { createRecipe } from '../../redux/actions/recipe_actions';
 import SuccessRecipe from './mini_components_Recipes/message_success_Recipe';
+import {
+  containerFatherRecipe,
+  containerAddBack,
+  linkBack,
+  textCreateRecipe,
+} from '../style/create_Inicio/create_Recipe/create_recipe.module.css';
 export default function CreateRecipe() {
   const [mySwitch, setMySwitch] = useState(true);
   const refStep = useRef([]);
@@ -18,16 +23,16 @@ export default function CreateRecipe() {
     image: '',
   });
 
-  const buttonBackToCrate = (
-    <button>
-      <Link to="/create">Back</Link>
-    </button>
-  );
-
   const createRecipeForm = (
-    <div>
-      <h3>Create your own Recipe</h3>
-      {buttonBackToCrate}
+    <div className={containerFatherRecipe}>
+      <div>
+        <div className={containerAddBack}>
+          <Link className={linkBack} to="/create">
+            ⋘Back
+          </Link>
+          <h3 className={textCreateRecipe}>Create your own Recipe</h3>
+        </div>
+      </div>
       <FormRecipe
         form={form}
         setForm={setForm}

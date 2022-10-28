@@ -1,0 +1,40 @@
+.cardChildDiet {
+  bottom: 6rem;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  z-index: 0;
+  background-color: rgb(12, 9, 2);
+}
+.infCardDiet {
+  position: absolute;
+  text-align: justify;
+  background-color: rgba(57, 40, 23, 0.541);
+  padding: 2rem;
+  border-radius: 3rem 3rem 3rem 3rem;
+  font-size: 2rem;
+  z-index: 9;
+  bottom: 10rem;
+  color: var(--color-title);
+  width: 80%;
+  left: 2rem;
+  color: beige;
+}
+.nameDiet {
+  left: 3rem;
+  top: 2rem;
+  font-size: 6rem;
+  position: absolute;
+  color: aliceblue;
+  z-index: 10;
+  border-radius: 1rem 1rem 1rem 1rem;
+  border-bottom: 1rem solid var(--borde);
+}
+.imageCardDiet {
+  position: relative;
+  height: 50rem;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(84, 200, 200, 0.252);
+  opacity: 0.5;
+}

@@ -1,0 +1,52 @@
+:root {
+  --color-sucess: rgba(117, 167, 16, 0.735);
+}
+
+.errorDietForm {
+  position: relative;
+  bottom: 3rem;
+  text-align: center;
+  font-size: 2rem;
+  padding: 1rem 0rem 1rem 0rem;
+  left: 3rem;
+  width: 38.14rem;
+  color: aliceblue;
+  background-color: rgba(228, 12, 12, 0.467);
+  border-radius: 0rem 0rem 4rem 0rem;
+  border-bottom: 5px solid black;
+  backdrop-filter: blur(10px);
+}
+.successInput {
+  position: relative;
+  bottom: 3rem;
+  text-align: center;
+  font-size: 2rem;
+  padding: 1rem 0rem 1rem 0rem;
+  left: 3rem;
+  width: 38.14rem;
+  background-color: var(--color-sucess);
+  border-radius: 0rem 0rem 4rem 0rem;
+  color: rgb(53, 49, 18);
+  border-bottom: 8px solid var(--borde);
+
+  backdrop-filter: blur(20px);
+}
+/* ///////////////////////////////////////////////// */
+/* SUBMIT */
+
+.containerInputSuccessDiet {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem;
+  width: 40rem;
+}
+.submitFormDiet {
+  font-size: 3rem;
+  padding: 1.5rem;
+  border: none;
+  position: relative;
+  color: aliceblue;
+  background-color: var(--color-sucess);
+  border-radius: 3rem;
+  cursor: pointer;
+}

@@ -1,0 +1,33 @@
+.fatherTitle {
+  display: flexbox;
+  justify-content: center;
+}
+.titlePageSt {
+  display: block;
+  text-align: center;
+  font-size: 2.2rem;
+  bottom: 2rem;
+  padding: 3rem 0rem 2rem 0rem;
+  border-radius: 21rem 21rem 21rem 21rem;
+  border-bottom: 0.25rem solid var(--borde);
+  background: linear-gradient(
+    180deg,
+    rgba(253, 253, 253, 0.5) 20%,
+    var(--color-base) 80%
+  );
+}
+
+.contentFather {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  backdrop-filter: blur(20px);
+}
+
+.filBackground {
+  background-image: var(--background2);
+  background-attachment: fixed;
+  background-size: cover;
+  backdrop-filter: blur(6px);
+}

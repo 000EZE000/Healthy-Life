@@ -1,0 +1,24 @@
+.containerDiet {
+  background-color: rgb(85, 70, 70);
+}
+.containerCardDiet {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+}
+.dietTitle {
+  font-size: 2.4rem;
+  color: var(--color-title);
+  letter-spacing: 1rem;
+}
+.ContainerDietTitle {
+  bottom: 1rem;
+  background: linear-gradient(var(--degradado));
+  display: flex;
+  position: relative;
+  border-radius: 0px 0px 80px 80px;
+  backdrop-filter: blur(20px);
+  justify-content: center;
+  z-index: 10;
+}

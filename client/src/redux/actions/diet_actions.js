@@ -5,6 +5,7 @@ import {
   MODIFY_DIETS,
   DELETE_DIET,
   DIET_RECIPES_RELATIONS,
+  CLEAN_RELATION,
 } from './name_variables_Diet';
 
 /// ////////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +32,6 @@ export const dietRecipeRelations = (id) => async (dispatch) => {
 /* POST */
 /// ////////////////////////////////////////////////////////////////////////////////////
 export const createDiet = (packDiet) => async (dispatch) => {
-  console.log(packDiet);
   const myRes = await axios({
     method: 'post',
     url: 'http://localhost:3003/diet',
@@ -65,4 +65,12 @@ export const deleteDiet = (id) => async (dispatch) => {
     params: id,
   });
   dispatch({ type: DELETE_DIET, payload: myRes });
+};
+
+///////////////////////////////////////////////////////////////////////////
+
+///CLEAR
+
+export const clearRelation = () => async (dispatch) => {
+  dispatch({ type: CLEAN_RELATION, payload: {} });
 };

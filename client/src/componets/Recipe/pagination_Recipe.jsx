@@ -1,22 +1,36 @@
 import { useEffect } from 'react';
 import CardRecipe from './order/card_recipe/card_recipe.jsx';
+import {
+  nextP,
+  lessP,
+  statusP,
+  contentInputPa,
+  contentInputPaBotton,
+} from '../style/Recipe_list/page_Recipe_num.module.css';
+import {
+  fatherTitle,
+  titlePageSt,
+  contentFather,
+  filBackground,
+} from '../style/Recipe_list/name_number_page.module.css';
+
 export default function PaginationRecipe({
   content,
   setPage,
-  order,
   pageLocation,
   setPageLocation,
   page,
+  arrayPage,
 }) {
+  const N = Number;
   useEffect(() => {
     setPage(arrayPage);
-  }, [order, pageLocation, content, setPage]);
+  }, [content, pageLocation, setPage]);
 
   if (!Array.isArray(content)) return null;
   const numRequired = 9;
   const copyOfContent = [...content];
   const numPage = Math.ceil(copyOfContent.length / 9);
-  const arrayPage = [];
   for (let i = 0; i < numPage; i++) {
     arrayPage.push([]);
   }
@@ -31,7 +45,6 @@ export default function PaginationRecipe({
 
   if (!arrayPage[0]) return <p>Loading...............</p>;
   const handleOnclickMovePage = (event) => {
-    const N = Number;
     const name = event.target.name;
     if (name === 'less') {
       if (N(pageLocation) === 0) return;
@@ -44,41 +57,59 @@ export default function PaginationRecipe({
   };
 
   const bottonNetx = (
-    <button name="plus" onClick={handleOnclickMovePage}>
-      Next
+    <button className={nextP} name="plus" onClick={handleOnclickMovePage}>
+      {' >>'}
     </button>
   );
   const bottonPrevious = (
-    <button name="less" onClick={handleOnclickMovePage}>
-      Previous
+    <button className={lessP} name="less" onClick={handleOnclickMovePage}>
+      {' <<'}
     </button>
   );
-
   const handleNumLocal = (event) => {
     const value = event.target.value;
     setPageLocation(value);
   };
 
   const buttonsPagesL = [];
-  let count = 10;
-  for (let i = 0; i < arrayPage.length; i++) {
-    if (i === arrayPage.length - 1) count = i;
-    if (i !== count) continue;
 
-    count = count + 10;
+  for (let i = 1; i < arrayPage.length; i++) {
     buttonsPagesL.push(
-      <button value={i} key={i} onClick={handleNumLocal}>{`page ${i}`}</button>
+      <button
+        className={statusP}
+        value={i - 1}
+        key={i}
+        onClick={handleNumLocal}
+      >
+        {i}
+      </button>
     );
   }
 
+  const titlePage = (
+    <p className={titlePageSt}>
+      Page N: {N(pageLocation) + 1} - {arrayPage.length}
+    </p>
+  );
+
   const renderPageButton = (
     <div>
-      <div>
+      <div className={contentInputPa}>
         {bottonPrevious}
         {buttonsPagesL}
         {bottonNetx}
       </div>
-      <CardRecipe location={page[pageLocation]} />
+      <div className={fatherTitle}>{titlePage}</div>
+      <div className={filBackground}>
+        <div className={contentFather}>
+          <CardRecipe location={page[pageLocation]} />
+          <div className={contentInputPaBotton}>
+            {bottonPrevious}
+            {buttonsPagesL}
+            {bottonNetx}
+          </div>
+        </div>
+      </div>
     </div>
   );
 

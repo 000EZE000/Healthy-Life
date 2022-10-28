@@ -1,0 +1,56 @@
+.fatherStep {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cardChildStep {
+  background-color: #54707194;
+  backdrop-filter: blur(2px);
+  margin: 1rem;
+  width: 37rem;
+  color: var(--color-title);
+  border-radius: 10rem 0rem 10rem 0rem;
+}
+
+.fatheIngrAndEqui {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.childStepIng {
+  color: black;
+  text-align: center;
+  position: relative;
+  background-color: var(--color-texto-item);
+  font-size: 2rem;
+  padding: 0rem 1rem 0rem 1rem;
+  margin: 0.4rem;
+  text-decoration: none;
+  bottom: 2rem;
+  border-radius: 4rem 0rem 0rem 4rem;
+}
+
+.childStepEqui {
+  color: black;
+  text-align: center;
+  position: relative;
+  background-color: bisque;
+  font-size: 2rem;
+  padding: 0rem 1rem 0rem 1rem;
+  margin: 0.4rem;
+  text-decoration: none;
+  bottom: 2rem;
+  border-radius: 0rem 4rem 6rem 0rem;
+}
+.titleStep {
+  padding: 2rem 2rem 0rem 2rem;
+  font-size: 2.4rem;
+  text-align: center;
+}
+.childLiStep {
+  position: relative;
+  right: 3rem;
+  font-size: 2rem;
+  list-style: none;
+}
