@@ -20,7 +20,7 @@ GET http://localhost:3003/recipes/all_recipes
 ###
 ###
 #Title
-GET  http://localhost:3003/recipes/search?name=salad
+GET  http://localhost:3003/recipes/search?name=a
 
 ###
 
@@ -39,14 +39,14 @@ GET http://localhost:3003/recipes/order/health_score
 
 ####
 #ID
-GET http://localhost:3003/recipes/168
+GET http://localhost:3003/recipes/45
 
 
 ###
 
 ####
 #RelationShip
-GET http://localhost:3003/recipes/relationship/168
+GET http://localhost:3003/recipes/relationship/46
 
 ###
 
@@ -147,4 +147,4 @@ Content-Type: application/json
 
 ###
 #DELETE
-DELETE http://localhost:3003/recipes/6
+DELETE http://localhost:3003/recipes/45

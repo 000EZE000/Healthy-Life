@@ -20,8 +20,8 @@ export default function PaginationRecipe({
   pageLocation,
   setPageLocation,
   page,
-  arrayPage,
 }) {
+  let arrayPage = [];
   const N = Number;
   useEffect(() => {
     setPage(arrayPage);

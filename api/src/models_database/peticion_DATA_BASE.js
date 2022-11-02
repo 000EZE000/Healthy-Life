@@ -2,14 +2,12 @@ const axios = require('axios');
 require('dotenv').config();
 const { API_KEY, ALL_RESULTS, URL } = process.env;
 const getBaseData = async (request = null) => {
-  console.log('peticion');
-
   const getAllApi = {
     apiKey: API_KEY,
     addRecipeInformation: true,
     number: ALL_RESULTS,
   };
-  console.log('holasdasdsad');
+
   const getNameApi = {
     apiKey: API_KEY,
     addRecipeInformation: true,

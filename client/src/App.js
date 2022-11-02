@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import Header from './componets/Header/Header';
 import Home from './componets/Home/Home';
 import Search from './componets/Search/Search';
-import Recipe from './componets/Recipe/Recipe_Container';
+import Recipe from './componets/Recipe/Recipe_Container.jsx';
 import Diet from './componets/Diet/diet_container';
 import RecipeDetails from './componets/Detaile_Recipe/detait_Recipe';
 import RelationsDiet from './componets/Relations_Diet_Recipes/Relation_Diet';
