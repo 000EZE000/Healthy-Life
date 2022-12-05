@@ -68,7 +68,7 @@ export const detailsId = (id) => async (dispatch) => {
 export const recipesRelationsDiet = (id) => async (dispatch) => {
   const myRes = await axios({
     method: 'get',
-    url: `http://localhost:3003/recipes/relationship/${id}`,
+    url: `	http://localhost:3003/recipes/relationship/${id}`,
   });
   return dispatch({ type: RECIPE_DIETS_RELATIONS, payload: myRes });
 };

@@ -23,7 +23,7 @@ const Recipe = (sequelize) => {
         type: DataTypes.REAL,
       },
       step_by_step: {
-        type: DataTypes.ARRAY(DataTypes.JSON),
+        	type: DataTypes.ARRAY(DataTypes.JSON),
       },
       image:{
         type:DataTypes.STRING

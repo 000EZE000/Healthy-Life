@@ -6,8 +6,9 @@ const {
     controllerPostDiet,
     controllerDeleteDiet } = require('./controller/for_Diet')
 
-
 const dietRouter = Router();
+
+////////////////////////
 
 
 dietRouter.get('/', async (req, res) => {
@@ -29,6 +30,7 @@ dietRouter.get('/relations/:ids', async (req, res) => {
     }
 })
 
+//////////////////////////
 
 dietRouter.post('/', async (req, res) => {
     try {
@@ -39,6 +41,8 @@ dietRouter.post('/', async (req, res) => {
     }
 })
 
+/////////////////////
+
 dietRouter.delete('/:ids',async (req, res) => {
     try {
         const myRes = await controllerDeleteDiet(req.params)
@@ -47,5 +51,7 @@ dietRouter.delete('/:ids',async (req, res) => {
         res.status(400).send(myMessageError(error))
     }
 })
+
+///////////////////////////
 
 module.exports = dietRouter;
