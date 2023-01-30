@@ -49,10 +49,12 @@
   justify-content: center;
   flex-wrap: wrap;
   z-index: 100;
-  background-color: black;
+  background-image: var(--background2);
+  background-attachment: fixed;
+  background-size: cover;
 }
 .filterDiet {
-  background-color: rgba(54, 177, 132, 0.783);
+  background-color: rgba(54, 177, 132, 1);
   position: relative;
   font-size: 1.4rem;
   padding: 1rem;
@@ -86,15 +88,16 @@
 .backgroundAuxRec {
   bottom: 16rem;
   position: relative;
-
   height: 100rem;
   z-index: 1;
-  background-image: var(--background1);
+  background-image: var(--background2);
+    background-attachment: fixed;
+  background-size: cover;
 }
 
 .backgroundAuxRec {
   animation-name: topH3Ho;
-  animation-duration: 26s;
+  animation-duration: 15s;
   animation-fill-mode: forwards;
 }
 

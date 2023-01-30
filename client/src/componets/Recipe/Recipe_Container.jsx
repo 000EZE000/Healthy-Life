@@ -84,6 +84,7 @@ export default function Recipe() {
   const myCarts = (
     <div className={containerRecipeAall}>
       <div className={containerButtonAll}>{buttonArray}</div>
+          <div>{myOptionDiets}</div>
       <PaginationRecipe
         content={myOrder[0] ? myOrder : repicesReducer}
         setPage={setPage}
@@ -97,7 +98,6 @@ export default function Recipe() {
 
   return (
     <div>
-      <div>{myOptionDiets}</div>
       {myCarts}
       <div className={backgroundAuxRec}></div>
     </div>

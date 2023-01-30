@@ -57,7 +57,7 @@ export default function Search() {
       />
       <img
         className={imgSearch}
-        src="https://scontent.xx.fbcdn.net/v/t1.15752-9/310241117_605327081345712_5296182171041140039_n.png?stp=dst-png_p206x206&_nc_cat=103&ccb=1-7&_nc_sid=aee45a&_nc_ohc=2JpZ0p1UR3gAX-SZWFu&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQ-3CZGSTUT9Za56HZ8mIJ8SgN-QoNF3HFqDPAw9ZB5GQ&oe=637BCA42"
+        src="http://cdn.onlinewebfonts.com/svg/img_381798.png"
         alt="ico"
       />
     </div>
