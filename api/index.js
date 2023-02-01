@@ -1,3 +1,5 @@
+
+
 //                       _oo0oo_
 //                      o8888888o
 //                      88" . "88
@@ -19,9 +21,12 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const dotenv = require('dotenv');
+dotenv.config();
 // Syncing all the models at once.
+const PORT = process.env.PORT
 conn.sync({ alter: true }).then(() => {
-  server.listen(3003, () => {
-    console.log('listening at 3003'); // eslint-disable-line no-console
+  server.listen(PORT, () => {
+    console.log(`listening at ${PORT}`); // eslint-disable-line no-console
   });
 });
